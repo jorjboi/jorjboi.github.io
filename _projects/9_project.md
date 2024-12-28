@@ -2,7 +2,7 @@
 layout: page
 title: Maya Plugin
 description: A GLSL shader to create clouds and simulate different lighting scenarios.
-img: assets/img/clouds_gif.gif
+img: assets/img/clouds_shader.gif
 importance: 2
 category: fun
 giscus_comments: true
