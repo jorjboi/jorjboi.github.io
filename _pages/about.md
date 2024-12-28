@@ -20,7 +20,7 @@ social: false # includes social icons at the bottom of the page
 ---
 Hi, I'm George, and I love to code and to draw.
 
-In 2018, I gradated from UC Berkeley with a B.S. in Electrical Engineering and Computer Science, and had the opportunity to work at [Visby.io](https://x.com/visby_io) on holographic video research (while doing some [wedding photography](https://www.instagram.com/p/B7xLsOmDNqu/?img_index=1) and playing with film cameras on the weekends).
+In 2018, I graduated from UC Berkeley with a B.S. in Electrical Engineering and Computer Science, and had the opportunity to work at [Visby.io](https://x.com/visby_io) on holographic video research (while doing some [wedding photography](https://www.instagram.com/p/B7xLsOmDNqu/?img_index=1) and playing with film cameras on the weekends).
 
 In 2020, I left engineering to pursue a dream of becoming a storyboard artist in animation. I am in my 3rd year of the [Character Animation program](https://calarts.edu/academics/programs-and-degrees/bfa-character-animation) at CalArts. To me, constructing a drawing or building a story are just different forms of problem-solving.
 
