@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: An overview of some of the work I've done professionally and at UC Berkeley.
 nav: true
-nav_order: 3
-display_categories: [work, fun]
+nav_order: 2
+display_categories: [work]
 horizontal: false
 ---
 

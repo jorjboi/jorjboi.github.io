@@ -1,10 +1,11 @@
 ---
 layout: page
-title: project 9
-description: another project with an image 🎉
-img: assets/img/6.jpg
-importance: 4
+title: Maya Plugin
+description: A GLSL shader to create clouds and simulate different lighting scenarios.
+img: assets/img/clouds_gif.gif
+importance: 2
 category: fun
+giscus_comments: true
 ---
 
 Every project has a beautiful feature showcase page.
