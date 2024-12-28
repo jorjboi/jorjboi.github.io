@@ -2,7 +2,7 @@
 layout: page
 title: Pathtracer
 description: Implemented the core routines of a physically-based renderer using the pathtracing algorithm.
-img: assets/img/dragon_fast.gif
+img: assets/img/dragon_render.gif
 importance: 1
 category: work
 related_publications: true
