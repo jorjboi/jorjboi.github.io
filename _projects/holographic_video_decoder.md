@@ -2,7 +2,7 @@
 layout: page
 title: Holographic Video Decoder
 description: A decoder for streaming lightfield-video with 6 degrees of freedom.
-img: assets/img/ralphie_hologram.gif
+img: assets/img/ralphie_demo.gif
 importance: 1
 category: work
 related_publications: false
