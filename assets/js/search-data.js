@@ -435,9 +435,9 @@ ninja.data = [{
           description: "Simulating focal length and aperture adjustment using lightfields.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/lens_simulation/";
-            },},{id: "projects-maya-plugin",
-          title: 'Maya Plugin',
-          description: "Under construction.",
+            },},{id: "projects-limb-autorigger",
+          title: 'Limb Autorigger',
+          description: "A Python plugin for Maya to auto-rig limbs. Supports IK/FK blending and stretchy bones.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/maya_plugin/";
             },},{id: "projects-mesh-editor",
