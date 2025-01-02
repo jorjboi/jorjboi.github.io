@@ -2,7 +2,7 @@
 layout: page
 title: Limb Autorigger
 description: A Python plugin for Maya to auto-rig limbs. Supports IK/FK blending and stretchy bones.
-img: assets/img/1.jpg
+img: assets/img/arm_rig_demo.gif
 importance: 2
 category: work
 giscus_comments: true
