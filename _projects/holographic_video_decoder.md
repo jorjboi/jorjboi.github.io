@@ -16,7 +16,7 @@ I worked on the decoder side, which loads encoded light field video data from di
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/raycasting.png" title="raycasting" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/decoder/pipeline.png" title="Decoder pipeline" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -26,6 +26,10 @@ Some technologies I had to become familiar with on the fly included ffmpeg, libj
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/lightfield_streaming_video_ralphie.mp4" title="lightfield streaming video, ralphie" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/decoder/ralphie_hologram.gif" title="Ralphie hologram" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+<div class="caption">
+    Ralphie the Havanese
+</div>
+
