@@ -5,7 +5,7 @@ description: Implemented the core routines of a physically-based renderer using 
 img: assets/img/dragon_render.gif
 importance: 1
 category: work
-related_publications: true
+related_publications: false
 ---
 
 - [Overview](#overview)
@@ -16,6 +16,7 @@ related_publications: true
 - [Adaptive Sampling](#adaptive-sampling)
 - [Reflective and Refractive BSDFs](#reflective-and-refractive-bsdfs)
 - [Microfacet BRDF](#microfacet-brdf)
+- [Thin Lens and Autofocus](#thin-lens-and-autofocus)
 
 ## Overview
 This project was done for CS184 Computer Graphics & Imaging at UC Berkeley, taught by Professor Ren Ng. In this project, I implemented the core functionality of a physically-based renderer and the rendering equation. 
@@ -54,7 +55,7 @@ For each ray, we need to check for an intersection with a surface in the scene. 
     </div>
 </div>
 
-This algorithm takes a ray with origin $O$ and direction $D$ and tests for its intersection with a triangle with vertices $P0$, $P1$, and $P2$. If the barycentric coordinates $b1$, $b2$, and $1-b1-b2$ specify a point within the triangle, then there is an intersection.
+This algorithm takes a ray with origin `O` and direction `D` and tests for its intersection with a triangle with vertices *P<sub>0</sub>* , *P<sub>1</sub>* , and *P<sub>2</sub>* . If the barycentric coordinates *b<sub>1</sub>* , *b<sub>2</sub>* , and *1 - b<sub>1</sub> - b<sub>2</sub>* specify a point within the triangle, then there is an intersection.
 
 However, testing against every triangle in a scene for an intersection is costly and inefficient, so I accelerate this process by constructing a bounding volume hierarchy for the scene.
 
@@ -95,11 +96,11 @@ We generate a ray that starts at the point of intersection and trace it in the d
     The reflectance equation
 </div>
 
-The total outgoing emission at point $p$ in the direction $wr$ is $Lr(p, wr)$, and the integral of the total emission coming from every outgoing direction $wi$ is over a hemisphere $H^2$. 
+The total outgoing emission at point `p` in the direction `wr` is `Lr(p, wr)`, and the integral of the total emission coming from every outgoing direction `wi` is over a hemisphere *H<sup>2</sup>*. 
 
-$Li(p, wi)$ is the emission from a light source that a ray starting at $p$ with direction $wi$ encounters, $fr(p, wi -> wr)$ is the evaluation of the BSDF at point $p of a ray being reflected from *wi* to *wr* towards the camera, and *cos(theta i)* is used to attenuate the amount of light coming in from an angle.
+`Li(p, wi)` is the emission from a light source that a ray starting at `p` with direction `wi` encounters, `fr(p, wi -> wr)` is the evaluation of the BSDF at point `p` of a ray being reflected from `wi` to `wr` towards the camera, and `cos(θi)` is used to attenuate the amount of light coming in from an angle.
 
-In practice, we approximate this with a Monte Carlo estimator with *N* samples and the probability distribution function (for a hemisphere, this is 1/2*pi*) :
+In practice, we approximate this with a Monte Carlo estimator with `N` samples and the probability distribution function (for a hemisphere, this is 1/2*pi* ) :
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -196,7 +197,7 @@ However, taking many samples is a slow and computationally expensive process. We
 ## Adaptive Sampling
 With adaptive sampling, we check if a pixel’s value has converged early as we trace rays through it, and stop sampling if it has.
 
-We can check a pixel’s convergence after each batch of n samples to see if it’s within a 95% confidence interval. Areas of the scene that are shadowed or not directly illuminated take longer to converge. Below are images depicting  sample rates for Cornell box spheres and bunny: red indicates that we took more samples to converge, while blue and green indicate that the pixel value converged quickly and we stopped sampling earlier.
+We can check a pixel’s convergence after each batch of `n` samples to see if it’s within a 95% confidence interval. Areas of the scene that are shadowed or not directly illuminated take longer to converge. Below are images depicting sample rates for Cornell box spheres and bunny: red indicates that we took more samples to converge, while blue and green indicate that the pixel value converged quickly and we stopped sampling earlier.
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-6 mt-3 mt-md-0">
@@ -269,9 +270,9 @@ We can also model microfacet materials–those with a rough reflective surface s
     </div>
 </div>
 
-Where *F* is the fresnel term, *G* the shadow-masking term, *D* the normal distribution function, *n* the normal at the macro level, and *h* the half-vector (the normal at the microsurface).
+Where `F` is the fresnel term, `G` the shadow-masking term, `D` the normal distribution function, `n` the normal at the macro level, and `h` the half-vector (the normal at the microsurface).
 
-For *D(h)*, I implement the Beckmann distribution, which is more suited to microfacet materials than the Gaussian distribution:
+For `D(h)`, I implement the Beckmann distribution, which is more suited to microfacet materials than the Gaussian distribution:
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -279,7 +280,7 @@ For *D(h)*, I implement the Beckmann distribution, which is more suited to micro
     </div>
 </div>
 
-Here, α represents the albedo, or the reflectance of a material. We use this to control the glossiness or reflectance of a material. Below is a render of a dragon with a gold material and albedo α = 0.05.
+Here, `α` represents the albedo, or the reflectance of a material. We use this to control the glossiness or reflectance of a material. Below is a render of a dragon with a gold material and albedo `α = 0.05`.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -290,76 +291,38 @@ Here, α represents the albedo, or the reflectance of a material. We use this to
     α = 0.05
 </div>
 
+## Thin Lens and Autofocus
 
+Finally, I can extend the path tracer’s virtual camera, which follows an ideal pinhole model, to use a thin lens instead. With a pinhole model, everything is in perfect focus. However, lenses in real cameras and human eyes have a finite aperture and focal length.
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+I first create lens elements that refract the rays first in accordance with **Snell’s Law**, to create depth of field. 
+Next, I implement contrast-based autofocus with a focus metric based on the sum of the variances of an image patch to focus on. By stepping through the depths between my infinity-focus and near-focus positions, I can find the location of the virtual camera sensor that maximizes the amount of contrast in the region I want to be in focus.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
+    graph
 </div>
+
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    This image can also have a caption. It's like magic.
+    autofocus
 </div>
 
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+Using a double Gauss lens model, the most common type of camera lens, I can focus on this region of the dragon’s head.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
+    dragon head
 </div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}

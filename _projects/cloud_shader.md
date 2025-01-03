@@ -6,76 +6,106 @@ img: assets/img/clouds_loop.gif
 importance: 2
 category: work
 giscus_comments: true
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+Inspired by scenes in films such as Up, I wanted to render a scene with believable and aesthetically compelling clouds. Using Three.js, a JavaScript API for WebGL based graphics, I created a fragment shader that creates clouds through volumetric ray marching. I also added a UI that lets the user control the scene's appearance.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+- [Implementation](#implementation)
+- [UI Controls](#ui-controls)
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+## Implementation
+
+The geometry of my scene is just a simple screen-aligned quad, and my vertex shader is nothing more than a dummy "Hello World" shader. The fragment shader generates the output of every pixel and paints the scene.
+
+I first generate procedural noise to sample for a cloud-like texture. We can sample a simple noise function or texture to create more complex Fractal Brownian Motion noise. This is done by layering several layers of Perlin noise, each layer increasing in frequency (lacunarity) and decreasing in amplitude (persistence). 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/fbm.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
+
+Next, I implement **volumetric ray marching** to simulate cloud volumes, initializing each ray based on the camera origin and a pixel’s coordinates. I define a bounding box for where I want clouds to exist in the scene and incrementally sample the ray at regular intervals within this volume. At each step, I sample the noise function for the cloud density and thickness. 
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/volumetric_raymarching.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+Finally, light was added to the scene by taking the dot product of the scene's `lightDirection` and the direction of the ray to simulate the light intensity, and then fading it out exponentially `2^(k*(light_intensity−1))` from the source. I do this several times with different parameters to create several "layers" that are added to the background color to fade the light out realistically and create ambient lighting effects.
+
+By sampling the density and light intensity, the ray accumulates a final color and opacity for the cloud at a specific fragment.
+
+## UI Controls
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/cloud_ui.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+The hardness parameter is factored into the noise sampling function to adjust the noise density, which has an effect on the hardness or softness of the clouds. 
+
+The abledo describes how reflective the clouds are, and is factored into the light intensity.
+
+The position of the sun can be adjusted by adding offsets to the lightDirection vector, and the viewing angle can be adjusted with offsets to the camera view matrix.
+
+Finally, the time of day (morning, midday, or night) is set by choosing different values for the background color and the light source.
+
+
+## Results
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/hard_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/soft_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    This image can also have a caption. It's like magic.
+    Hard (upper) vs. Soft (lower) clouds
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/high_albedo_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+</div>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/low_albedo_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
+    High albedo (upper) vs. Low albedo (lower) clouds
 </div>
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/light_source_direction.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-```
+<div class="caption">
+    Adjusting the light source direction
+</div>
 
-{% endraw %}
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/high_albedo_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/low_albedo_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Changing the time of day
+</div>
+
