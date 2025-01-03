@@ -14,6 +14,8 @@ related_publications: true
 - [Direct Illumination](#direct-illumination)
 - [Global Illumination](#global-illumination)
 - [Adaptive Sampling](#adaptive-sampling)
+- [Reflective and Refractive BSDFs](#reflective-and-refractive-bsdfs)
+- [Microfacet BRDF](#microfacet-brdf)
 
 ## Overview
 This project was done for CS184 Computer Graphics & Imaging at UC Berkeley, taught by Professor Ren Ng. In this project, I implemented the core functionality of a physically-based renderer and the rendering equation. 
@@ -36,7 +38,7 @@ First, we convert the pixel’s location from image space to camera space:
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracers/raycasting.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/raycasting.png" title="raycasting" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -48,11 +50,11 @@ For each ray, we need to check for an intersection with a surface in the scene. 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracers/raycasting.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/moller_trumbore.png" title="moller trumbore" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
-This algorithm takes a ray with origin O and direction D and tests for its intersection with a triangle with vertices P0, P1, and P2. If the barycentric coordinates b1, b2, and 1-b1-b2 specify a point within the triangle, then there is an intersection.
+This algorithm takes a ray with origin $O$ and direction $D$ and tests for its intersection with a triangle with vertices $P0$, $P1$, and $P2$. If the barycentric coordinates $b1$, $b2$, and $1-b1-b2$ specify a point within the triangle, then there is an intersection.
 
 However, testing against every triangle in a scene for an intersection is costly and inefficient, so I accelerate this process by constructing a bounding volume hierarchy for the scene.
 
@@ -68,7 +70,7 @@ The BVH is constructed recursively. The intersection test for each ray improves 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/max_planck.png" title="max planck" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -86,16 +88,16 @@ We generate a ray that starts at the point of intersection and trace it in the d
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/reflectance_equation.png" title="reflectance equation" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
     The reflectance equation
 </div>
 
-The total outgoing emission at point *p* in the direction *wr* is *Lr(p, wr)*, and the integral of the total emission coming from every outgoing direction *wi* is over a hemisphere *H2*. 
+The total outgoing emission at point $p$ in the direction $wr$ is $Lr(p, wr)$, and the integral of the total emission coming from every outgoing direction $wi$ is over a hemisphere $H^2$. 
 
-*Li(p, wi)* is the emission from a light source that a ray starting at *p* with direction *wi* encounters, *fr(p, wi -> wr)* is the evaluation of the BSDF at point *p* of a ray being reflected from *wi* to *wr* towards the camera, and *cos(theta i)* is used to attenuate the amount of light coming in from an angle.
+$Li(p, wi)$ is the emission from a light source that a ray starting at $p$ with direction $wi$ encounters, $fr(p, wi -> wr)$ is the evaluation of the BSDF at point $p of a ray being reflected from *wi* to *wr* towards the camera, and *cos(theta i)* is used to attenuate the amount of light coming in from an angle.
 
 In practice, we approximate this with a Monte Carlo estimator with *N* samples and the probability distribution function (for a hemisphere, this is 1/2*pi*) :
 
@@ -216,7 +218,77 @@ And finally, here is the bunny render, using 1024 samples:
     </div>
 </div>
 
+## Reflective and Refractive BSDFs
 
+So far, I have only modeled Lamberian materials with diffuse reflection. To simulate other materials like metal or glass, I implement reflective and refractive BSDFs.
+
+For a perfectly reflective mirror-like surface, the angle between the incoming incident ray and the surface normal is equal to the angle between the surface normal and the outgoing ray.
+
+For refractive surfaces, the direction of the transmitted ray is modeled by **Snell’s Law**. When modeling refraction, we also consider the edge case of total internal reflection, when a light ray is internally reflected instead of crossing the boundary between two mediums.
+
+We need a minimum ray depth of 2 to have reflections from not only direct light sources but also the surrounding environment:
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/placeholder.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    ray depth = 2
+</div>
+
+We need a minimum ray depth of 3 to have refraction (the light must first enter the sphere and also exit the sphere before reaching the environment). Note the caustic effect in the bottom right corner, a sign of refraction. At a ray depth of 4, light refracted through the glass sphere on the right can be reflected off the mirror sphere on the left, and we can see its reflection as well.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/placeholder.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    ray depth = 4
+</div>
+
+The sphere on the right is purely refractive right now. More realistic glass exhibits both refraction and reflection. The ratio of reflection to refraction is modeled by the Fresnel equations in physics, but I model this with **Shlick’s approximation** to make it easier to evaluate.  Now, we can see the reflection of the ceiling light on the glass ball on the right as well.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/placeholder.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    ray depth = 4
+</div>
+
+## Microfacet BRDF
+
+We can also model microfacet materials–those with a rough reflective surface such as brushed metal—with a microfacet BRDF. This implementation closely follows the method outlined in this article. Specifically, we use this equation to evaluate the BRDF:
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/equation.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+Where *F* is the fresnel term, *G* the shadow-masking term, *D* the normal distribution function, *n* the normal at the macro level, and *h* the half-vector (the normal at the microsurface).
+
+For *D(h)*, I implement the Beckmann distribution, which is more suited to microfacet materials than the Gaussian distribution:
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/equation.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+Here, α represents the albedo, or the reflectance of a material. We use this to control the glossiness or reflectance of a material. Below is a render of a dragon with a gold material and albedo α = 0.05.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    α = 0.05
+</div>
 
 
 
