@@ -8,6 +8,13 @@ category: work
 related_publications: true
 ---
 
+- [Overview](#overview)
+- [Ray Generation and Intersection](#ray-generation-and-intersection)
+- [Bounding Volume Hierarchies](#bounding-volume-hierarchies)
+- [Direct Illumination](#direct-illumination)
+- [Global Illumination](#global-illumination)
+- [Adaptive Sampling](#adaptive-sampling)
+
 ## Overview
 This project was done for CS184 Computer Graphics & Imaging at UC Berkeley, taught by Professor Ren Ng. In this project, I implemented the core functionality of a physically-based renderer and the rendering equation. 
 
