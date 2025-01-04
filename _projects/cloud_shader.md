@@ -42,8 +42,8 @@ By sampling the density and light intensity, the ray accumulates a final color a
 
 ## UI Controls
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/cloud_shader/cloud_ui.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -62,12 +62,12 @@ Finally, the time of day (morning, midday, or night) is set by choosing differen
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/cloud_shader/img/hard_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/cloud_shader/img/hard_clouds.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/cloud_shader/img/soft_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/cloud_shader/img/soft_clouds.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -76,12 +76,12 @@ Finally, the time of day (morning, midday, or night) is set by choosing differen
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/cloud_shader/img/high_albedo_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/cloud_shader/img/high_albedo_clouds.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/cloud_shader/low_albedo_clouds.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/cloud_shader/low_albedo_clouds.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -90,7 +90,7 @@ Finally, the time of day (morning, midday, or night) is set by choosing differen
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/cloud_shader/light_source_direction.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/cloud_shader/light_source_direction.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
