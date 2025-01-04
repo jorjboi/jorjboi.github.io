@@ -5,7 +5,6 @@ description: A GLSL shader to create clouds and simulate different lighting scen
 img: assets/img/clouds_loop.gif
 importance: 2
 category: work
-giscus_comments: true
 related_publications: false
 ---
 
@@ -13,7 +12,7 @@ Inspired by scenes in films such as Up, I wanted to render a scene with believab
 
 - [Implementation](#implementation)
 - [UI Controls](#ui-controls)
-- [R]
+- [Results](#results)
 
 ## Implementation
 
@@ -23,7 +22,7 @@ I first generate procedural noise to sample for a cloud-like texture. We can sam
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/fbm.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/fbm.jpg" title="Fbm noise" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -38,6 +37,8 @@ Next, I implement **volumetric ray marching** to simulate cloud volumes, initial
 Finally, light was added to the scene by taking the dot product of the scene's `lightDirection` and the direction of the ray to simulate the light intensity, and then fading it out exponentially `2^(k*(light_intensity−1))` from the source. I do this several times with different parameters to create several "layers" that are added to the background color to fade the light out realistically and create ambient lighting effects.
 
 By sampling the density and light intensity, the ray accumulates a final color and opacity for the cloud at a specific fragment.
+
+---
 
 ## UI Controls
 
@@ -55,6 +56,7 @@ The position of the sun can be adjusted by adding offsets to the lightDirection 
 
 Finally, the time of day (morning, midday, or night) is set by choosing different values for the background color and the light source.
 
+---
 
 ## Results
 
