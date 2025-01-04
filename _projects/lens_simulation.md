@@ -3,13 +3,13 @@ layout: page
 title: Lens Simulation
 description: Simulating focal length and aperture adjustment using lightfields. 
 img: assets/img/chessboard.gif
-importance: 2
+importance: 3
 category: work
 related_publications: false
 ---
 
 - [Overview](#overview)
-- [Depth refocusing](#depth-refocusing)
+- [Depth Refocusing](#depth-refocusing)
 - [Aperture Adjustment](#aperture-adjustment)
 
 ## Overview

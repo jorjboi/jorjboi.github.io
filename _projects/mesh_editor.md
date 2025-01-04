@@ -3,7 +3,7 @@ layout: page
 title: Mesh Editor
 description: A tool to create a mesh out of a Bezier surface, upsample with loop subdivision, and visualize Phong shading and environment mapping.
 img: assets/img/meshedit_gif.gif
-importance: 2
+importance: 3
 category: work
 related_publications: false
 ---
