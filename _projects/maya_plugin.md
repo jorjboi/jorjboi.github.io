@@ -8,7 +8,7 @@ category: work
 related_publications: false
 ---
 
-I wrote a Python script in Maya to automatically rig a limb to support IK/FK blending and “stretchy bones” (a skeleton with deformation). The repo is [here](https://github.com/jorjboi/limb-autorigger).
+I wrote a Python script in Maya to automatically rig a limb to support IK/FK blending and “stretchy bones” (a skeleton with deformation). This was done for part of Nick Miller’s Master Rigging and Python Scripting [class](https://www.thegnomonworkshop.com/tutorials/master-rigging-python-scripting-in-maya). The repo is [here](https://github.com/jorjboi/limb-autorigger).
 
 To rig a limb, run the following in the Script Editor:
 
