@@ -102,9 +102,9 @@ The total outgoing emission at point `p` in the direction `wr` is `Lr(p, wr)`, a
 
 In practice, we approximate this with a Monte Carlo estimator with `N` samples and the probability distribution function (for a hemisphere, this is 1/2*pi* ) :
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/monte_carlo.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -115,7 +115,7 @@ However, the renders we get back are noisy because many sampled rays never reach
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/hemisphere_sampling.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -130,7 +130,7 @@ Now, the renders are far less noisy because they take far fewer samples to conve
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/importance.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/importance_sampling.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -199,25 +199,30 @@ With adaptive sampling, we check if a pixel’s value has converged early as we 
 
 We can check a pixel’s convergence after each batch of `n` samples to see if it’s within a 95% confidence interval. Areas of the scene that are shadowed or not directly illuminated take longer to converge. Below are images depicting sample rates for Cornell box spheres and bunny: red indicates that we took more samples to converge, while blue and green indicate that the pixel value converged quickly and we stopped sampling earlier.
 
+
+
 <div class="row justify-content-sm-center">
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/pathtracer/sphere_sample_rate.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/pathtracer/bunny_sample_rate.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Blue indicates pixel value converged early; red indicates slow convergence
+    Red regions took more samples to converge than blue
 </div>
+
 
 And finally, here is the bunny render, using 1024 samples:
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/bunny_1024.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+
+---
 
 ## Reflective and Refractive BSDFs
 
@@ -231,7 +236,7 @@ We need a minimum ray depth of 2 to have reflections from not only direct light 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/placeholder.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/two_bounce.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -242,7 +247,7 @@ We need a minimum ray depth of 3 to have refraction (the light must first enter 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/placeholder.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/multibounce.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -253,20 +258,22 @@ The sphere on the right is purely refractive right now. More realistic glass exh
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/placeholder.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/five_bounce.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
     ray depth = 4
 </div>
 
+---
+
 ## Microfacet BRDF
 
 We can also model microfacet materials–those with a rough reflective surface such as brushed metal—with a microfacet BRDF. This implementation closely follows the method outlined in this article. Specifically, we use this equation to evaluate the BRDF:
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/equation.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/microfacet_equation.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -274,9 +281,9 @@ Where `F` is the fresnel term, `G` the shadow-masking term, `D` the normal distr
 
 For `D(h)`, I implement the Beckmann distribution, which is more suited to microfacet materials than the Gaussian distribution:
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/equation.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/beckmann.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -284,12 +291,14 @@ Here, `α` represents the albedo, or the reflectance of a material. We use this 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon_1024.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
     α = 0.05
 </div>
+
+---
 
 ## Thin Lens and Autofocus
 
@@ -300,7 +309,7 @@ Next, I implement contrast-based autofocus with a focus metric based on the sum 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/depth_vs_contrast.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -309,7 +318,7 @@ Next, I implement contrast-based autofocus with a focus metric based on the sum 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/autofocus_region.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -320,7 +329,7 @@ Using a double Gauss lens model, the most common type of camera lens, I can focu
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/pathtracer/dragon_double_gauss.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">

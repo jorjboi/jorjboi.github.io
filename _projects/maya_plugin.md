@@ -35,6 +35,24 @@ This rig setup also supports stretching IK and FK joints for stretchy skeletons.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/maya_plugin/ik_stretch_2.gif" title="Stretchy Bones" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    IK Stretching
+</div>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/maya_plugin/fk_stretch_2.gif" title="Stretchy Bones" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    FK Stretching
+</div>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/maya_plugin/stretchy_bones.gif" title="Stretchy Bones" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
