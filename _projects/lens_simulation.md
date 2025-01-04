@@ -8,6 +8,30 @@ importance: 2
 category: work
 ---
 
+- [Overview](#overview)
+- [Depth refocusing](#depth-refocusing)
+
+## Overview
+
+The light field is a function that describes the amount of light flowing in every direction through every point in space; the slice of the light field that enters our eyes or the camera provides us with visual information about the world around us. We can take discrete samples of the light field with plenoptic cameras.
+
+Here, I recreate the results of a plenoptic camera with collections of images from the [Stanford Light Field Archive](http://lightfield.stanford.edu/lfs.html). Light field captures from the Stanford Light Field Rig consist of 289 views from a 17 x 17 camera array. We can simulate effects such as depth refocusing and aperture adjustment from simple shifting and averaging operations.
+
+## Depth Refocusing
+
+When we take multiple pictures of a scene from slightly different positions on a plane orthogonal to the scene, moving the camera slightly between images to create stereoscopic views, objects that are closer to the camera appear to shift more than objects that are further away. When these images are averaged, images that are closer appear more blurred than ones further away, which simulates a far focal point.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/lens_simul.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    This image can also have a caption. It's like magic.
+</div>
+
+
+
 Every project has a beautiful feature showcase page.
 It's easy to include images in a flexible 3-column grid format.
 Make your photos 1/3, 2/3, or full width.

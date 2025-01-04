@@ -24,12 +24,9 @@ Other things I worked on included designing an ETL system for collecting data on
  
 Some technologies I had to become familiar with on the fly included ffmpeg, libjpeg, SIMD and multithreading, and CUDA.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/decoder/ralphie_hologram.gif" title="Ralphie hologram" class="img-fluid rounded z-depth-1" %}
-    </div>
+<div style="text-align: center;">
+  <figure style="display: inline-block; text-align: center;">
+    <img src="assets/img/ralphie_hologram.gif" alt="Ralphie hologram" style="max-width: 100%;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555;">Ralphie the Havanese</figcaption>
+  </figure>
 </div>
-<div class="caption">
-    Ralphie the Havanese
-</div>
-

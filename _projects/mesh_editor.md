@@ -5,7 +5,7 @@ description: A tool to create a mesh out of a Bezier surface, upsample with loop
 img: assets/img/meshedit_gif.gif
 importance: 2
 category: work
-giscus_comments: true
+giscus_comments: false
 related_publications: false
 ---
 
@@ -13,6 +13,9 @@ related_publications: false
 - [Bezier Patches](#bezier-patches)
 - [Smooth Shading](#smooth-shading)
 - [Edge Flip](#edge-flip)
+- [Edge Split](#edge-split)
+- [Mesh Upsampling](#mesh-upsampling)
+- [Phong Shading and Environment Mapping](#phong-shading-and-environment-mapping)
 
 ## Overview
 
@@ -20,51 +23,46 @@ This project explored the geometry of 3D modeling by creating a tool that can di
 
 I can also use my program to load and shade a custom model that I created in the open-source 3D computer graphics and animation software, Blender!
 
-<br/><br/>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/mesh_editor/teapot_header.png" title="teapot" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<br/><br/>
 
+---
 
 ## Bezier Patches
 
 Given a 4-by-4 grid of Bezier control points, I can evaluate all points on the corresponding bicubic Bezier patch using the Bernstein polynomials of degree 3. A Bezier surface can be represented as a continuous set of Bezier curves, parametrized by `(u, v)` coordinates in the range `[0, 1] x [0, 1]`.
 
-<br/><br/>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/mesh_editor/bezier_patch.png" title="bicubic bezier patch" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<br/><br/>
 
 A 9 x 9 grid of evenly spaced `(u, v)` coordinates were used as sample points to evaluate our Bezier surface. The resulting vectors were then taken 3 at a time to tesselate the surface using triangles. Here, we evaluate the Bezier surface for a teapot mesh.
 
-<br/><br/>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/mesh_editor/tesselated_teapot.png" title="bicubic bezier patch" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<br/><br/>
+
+---
 
 ## Smooth Shading
 
 To implement smooth shading, I need to compute the area-weighted average normal for each vertex, which requires iterating through the vertex’s neighboring vertices. We can perform this traversal by using the halfedge data structure for mesh representation.
 
-<br/><br/>
 <div class="row justify-content-sm-center">
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/mesh_editor/halfedge_diagram.png" title="halfedge structure" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/mesh_editor/hal.png" title="halfedge structure" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/pathtracer/halfedge_traversal.png" title="traversal" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/mesh_editor/traversal.png" title="traversal" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<br/><br/>
 
 
 A mesh consists of faces, edges, vertices, and halfedges, which tie together all the other elements. We can iterate through the neighboring vertices around a vertex by starting from the twin of a vertex's halfedge (so that it points inwards from a neighbor) and then repeatedly taking the twin of the next halfedge, ignoring faces on the boundary.
@@ -124,79 +122,75 @@ This process starts with identifying all elements in the original mesh of a pair
 
 ## Edge Split
 
+An edge split operation creates 1 new vertex, 3 new edges and 2 new faces.
 
-
-
-
-
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
-
+<br/><br/>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/edge_split_diagram.png" title="edge split diagram" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
+<br/><br/>
+
+As before, I begin by identifying all the half-edges, vertices, edges, and faces that are present in the original mesh of a pair of triangles. To split a non-boundary edge, I reassign pointers of the original elements if necessary, and create 1 new vertex, 6 new half-edges, 3 new edges, and 2 new faces, setting their neighbors as appropriate.
+
+Here is the teapot mesh after multiple edge split operations.
+
+<br/><br/>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/multiple_edge_split.png" title="multiple edge split" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<br/><br/>
+
+## Mesh Upsampling
+
+Once we can flip and split edges, we can upsample a mesh via loop subdivision. The subdivision algorithm: 
+- split each edge to create a new vertex along every edge in the mesh
+- flip new edges that connect an old and a new vertex
+- move each vertex to its updated location, a precomputed average of its neighboring vertices before the split
+
+Here is loop subdivision performed on several meshes:
+
+<br/><br/>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/teapot_upsample.png" title="multiple edge split" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/bean_upsample.png" title="multiple edge split" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/beast_upsample.png" title="multiple edge split" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
+<br/><br/>
+
+## Phong Shading and Environment Mapping
+
+I implemented Phong shading and environment map reflection shading of models with GLSL. The Phong shading model is given by `L = La + Ld + Ls`, where `La`, `Ld`, and `Ls` are the ambient light, diffuse light, and specular light respectively. 
+`La` depends on the ambient light coefficient and ambient light intensity. `Ld` is computed from the unit surface normal vector and the unit vector that points towards our light source. Similarly, `Ls` is computed from the unit surface normal vector and the bisecting vector between the vector towards the light source and the vector towards the camera. The results of Phong shading are displayed below.
+
+<br/><br/>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/phong_shading_teapot.png" title="phong shading" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
+<br/><br/>
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+For environment mapping, the we compute the reflection direction from the surface normal vector and the vector towards eye position. The angles `θ` (angle between the vector projection on the xy plane and the x-axis) and `ρ` (angle between the vector project on either the xz or yz plane and the z-axis) are computed from the reflection vector, and used as texture coordinates for our envionrment texture file. The results of reflective environmental mapping are shown below.
 
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
+<br/><br/>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mesh_editor/environment_mapping_teapot.png" title="environment mapping" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-```
+<br/><br/>
 
-{% endraw %}
