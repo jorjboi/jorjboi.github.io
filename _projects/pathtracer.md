@@ -100,7 +100,7 @@ The total outgoing emission at point `p` in the direction `wr` is `Lr(p, wr)`, a
 
 `Li(p, wi)` is the emission from a light source that a ray starting at `p` with direction `wi` encounters, `fr(p, wi -> wr)` is the evaluation of the BSDF at point `p` of a ray being reflected from `wi` to `wr` towards the camera, and `cos(θi)` is used to attenuate the amount of light coming in from an angle.
 
-In practice, we approximate this with a Monte Carlo estimator with `N` samples and the probability distribution function (for a hemisphere, this is 1/2*pi* ) :
+In practice, we approximate this with a Monte Carlo estimator with `N` samples and the probability distribution function (for a hemisphere, this is 1/2&#960;):
 
 <div class="row justify-content-center">
     <div class="col-6 mt-3 mt-md-0">
