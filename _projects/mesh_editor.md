@@ -80,8 +80,6 @@ A mesh consists of faces, edges, vertices, and halfedges, which tie together all
 
 I implement functionality to flip a non-boundary edge in a mesh. Flipping edge cb in the diagram below should create a new edge ad, and give us triangles adc and abd.
 
-This process starts with identifying all elements in the original mesh of a pair of triangles: 6 half-edges, 2 faces, 5 edges, and 4 vertices. We then systematically set the pointers for these elements to their new values (after the edge flip is complete). This operation doesn’t create or destroy any new mesh elements.
-
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/mesh_editor/edge_flip_diagram.jpg" title="edge flip diagram" class="img-fluid rounded z-depth-1" %}
