@@ -1,28 +1,39 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "George Geng",
+    "label": "Computer Engineer and Animation Student",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "email": "georgegeng@alum.calarts.edu",
+    "phone": "(510) 324-6622",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
+      "address": "25219 Wheeler Rd",
+      "postalCode": "CA 91321",
+      "city": "Santa Clarita",
       "countryCode": "US",
       "region": "California"
-    },
-    "profiles": [
-      {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
-      }
-    ]
+    }
   },
-  "work": [
+  "education": [
+    {
+      "institution": "California Institute of the Arts",
+      "location": "Santa Clarita, CA",
+      "url": "https://calarts.edu/",
+      "area": "Character Animation",
+      "studyType": "BFA",
+      "startDate": "August 2022",
+      "endDate": "May 2027"
+    },
+    {
+      "institution": "University of California, Berkeley",
+      "location": ", CA",
+      "url": "https://calarts.edu/",
+      "area": "Character Animation",
+      "studyType": "BFA",
+      "startDate": "August 2022",
+      "endDate": "May 2027"
+    }
+  ],
+  "Technical Experience": [
     {
       "name": "Institute for Advanced Study, Princeton University",
       "position": "Professor of Theoretical Physics",
@@ -42,20 +53,10 @@
       "startDate": "2014-04-01",
       "endDate": "2015-07-01",
       "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
-    }
-  ],
-  "education": [
-    {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "10",
-      "courses": ["Theory of Relativity"]
+      "highlights": [
+        "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.",
+        "Men of the year 2014 by Time magazine"
+      ]
     }
   ],
   "awards": [
