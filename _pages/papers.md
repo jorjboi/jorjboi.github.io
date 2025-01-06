@@ -2,7 +2,7 @@
 layout: page
 permalink: /papers/
 title: papers
-description: A list of papers hello
+description:
 nav: true
 nav_order: 3
 ---
