@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-papers",
           title: "papers",
-          description: "A list of papers hello",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/papers/";
