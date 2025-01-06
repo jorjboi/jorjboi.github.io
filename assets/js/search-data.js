@@ -31,8 +31,8 @@ ninja.data = [{
             window.location.href = "/papers/";
           },
         },{id: "nav-cv",
-          title: "cv",
-          description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+          title: "CV",
+          description: "Engineer and animation student interested in work at the intersection of art, computer science, and storytelling.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
