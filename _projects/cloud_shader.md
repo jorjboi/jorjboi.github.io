@@ -34,7 +34,7 @@ Next, I implement **volumetric ray marching** to simulate cloud volumes, initial
     </div>
 </div>
 
-Finally, light was added to the scene by taking the dot product of the scene's `lightDirection` and the direction of the ray to simulate the light intensity, and then fading it out exponentially `2^(k ×  (light_intensity−1))` from the source. I do this several times with different parameters to create several "layers" that are added to the background color to fade the light out realistically and create ambient lighting effects.
+Finally, light was added to the scene by taking the dot product of the scene's `light_direction` and the direction of the ray to simulate the light intensity, and then fading it out exponentially `2^(k ×  (light_intensity−1))` from the source. I do this several times with different parameters to create several "layers" that are added to the background color to fade the light out realistically and create ambient lighting effects.
 
 By sampling the density and light intensity, the ray accumulates a final color and opacity for the cloud at a specific fragment.
 

@@ -642,7 +642,7 @@ jsonresume:
   # - awards
   # - certificates
   - skills
-  - languages
+  # - languages
   # - interests
   # - references
 
