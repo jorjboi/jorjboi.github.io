@@ -31,7 +31,7 @@ ninja.data = [{
             window.location.href = "/papers/";
           },
         },{id: "nav-cv",
-          title: "CV",
+          title: "cv",
           description: "Engineer and animation student interested in work at the intersection of art, computer science, and storytelling.",
           section: "Navigation",
           handler: () => {
