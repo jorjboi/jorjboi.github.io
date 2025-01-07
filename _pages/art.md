@@ -7,73 +7,89 @@ nav: true
 nav_order: 3
 ---
 
+
 <style>
-  .art-section {
-    margin-bottom: 40px;
+  .art-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 0;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+  .art-item {
+    width: calc(33% - 20px);
+    max-width: 300px;
+    text-align: center;
   }
 
-  .grid img {
+  .art-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+
+  .art-item h3 {
+    font-size: 1.2em;
+    margin: 0;
+  }
+
+  .art-item p {
+    font-size: 0.9em;
+    color: #666;
   }
 
   .video-container {
     position: relative;
-    max-width: 100%;
-    margin: 0 auto;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
   }
 
-  .video-container video {
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    border: none;
   }
 </style>
 
 <div class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-description">{{ page.description }}</p>
-  </header>
+  <!-- <header class="post-header">
+    <h1 class="post-title">h1>
+    <p class="post-description"></p>
+  </header> -->
 
   <article>
-    <section class="art-section" id="life-drawing">
-      <h2>Life Drawing</h2>
-      <div class="grid">
-        <!-- Add your images here -->
-        <img src="/path/to/life-drawing1.jpg" alt="Life Drawing 1">
-        <img src="/path/to/life-drawing2.jpg" alt="Life Drawing 2">
-        <img src="/path/to/life-drawing3.jpg" alt="Life Drawing 3">
+    <div class="art-container">
+      <div class="art-item">
+        <img src="/path/to/art1.jpg" alt="Artwork 1">
+        <h3>Title of Artwork 1</h3>
+        <p>Short description of artwork 1.</p>
       </div>
-    </section>
+      <div class="art-item">
+        <img src="/path/to/art2.jpg" alt="Artwork 2">
+        <h3>Title of Artwork 2</h3>
+        <p>Short description of artwork 2.</p>
+      </div>
+      <div class="art-item">
+        <img src="/path/to/art3.jpg" alt="Artwork 3">
+        <h3>Title of Artwork 3</h3>
+        <p>Short description of artwork 3.</p>
+      </div>
+      <!-- Add more items as needed -->
+    </div>
 
-    <section class="art-section" id="illustration">
-      <h2>Illustration</h2>
-      <div class="grid">
-        <!-- Add your images here -->
-        <img src="/path/to/illustration1.jpg" alt="Illustration 1">
-        <img src="/path/to/illustration2.jpg" alt="Illustration 2">
-        <img src="/path/to/illustration3.jpg" alt="Illustration 3">
-      </div>
-    </section>
 
     <section class="art-section" id="film">
       <h2>Film</h2>
       <div class="video-container">
         <!-- Embed your video here -->
-        <video controls>
-          <source src="/path/to/your-video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/8dKbrDJAVrU?si=625nRcwo0GzEU_xl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </section>
   </article>
