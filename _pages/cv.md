@@ -1,7 +1,7 @@
 ---
 layout: cv
 permalink: /cv/
-title: CV
+title: cv
 nav: true
 nav_order: 5
 cv_pdf: George-Geng-Resume-2025.pdf # you can also use external links here

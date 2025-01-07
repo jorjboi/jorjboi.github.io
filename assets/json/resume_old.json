@@ -19,55 +19,21 @@
       "location": "Santa Clarita, CA",
       "url": "https://calarts.edu/",
       "area": "Character Animation",
-      "studyType": "Bachelor of Fine Arts",
-      "startDate": "9.2022"
+      "studyType": "BFA",
+      "startDate": "9.2022",
+      "endDate": "5.2027"
     },
     {
       "institution": "University of California, Berkeley",
       "location": "Berkeley, CA",
       "url": "https://calarts.edu/",
       "area": "Electrical Engineering and Computer Science",
-      "studyType": "Bachelor of Science",
+      "studyType": "BFA",
       "startDate": "8.2014",
       "endDate": "5.2018"
     }
   ],
-  "work": [
-    {
-      "name": "Visby.io",
-      "position": "Research Engineer",
-      "url": "https://x.com/visby_io",
-      "location": "San Francisco, CA",
-      "startDate": "08-2018",
-      "endDate": "02-2020",
-      "summary": "Performed experiments to explore models for decoding holographic light field video.",
-      "highlights": ["Wrote C++ code and profiled low-level hardware activity to optimize performance, stability, and data throughput as part of a critical feature for the decoding pipeline.",
-                    "Designed and implemented a data ETL system in Python for tracking stability metrics.",
-                    "Gained exposure to CUDA programming, learning new APls on the fly (e.g libavcodec, OpenSSL) and translating high-level requirements into manageable subtasks.",
-                    "Learned to write well-documented code for a large repository, apply best-practice system design principles, and take on many roles in a demanding, fast-paced agile environment."]
-    },
-    {
-      "name": "Blue Sky Studio",
-      "position": "Animation Studio R&D Intern",
-      "url": "https://www.instagram.com/blueskystudios/",
-      "location": "Greenwich, CT",
-      "startDate": "05-2017",
-      "endDate": "08-2017",
-      "summary": "Developed and made improvements to proprietary animation pipeline tools for Blue Sky Studios, an animation studio behind films such as Ice Age and The Peanuts Movie.",
-      "highlights": ["Collaborated with software engineers and artists to build the groundwork for a node-based material designer and create an intuititve UI for texture artist (Python/PyQt)."]
-    },
-    {
-      "name": "Bootcamp.com",
-      "position": "Physics Educational Content Creator",
-      "url": "https://www.bootcamp.com",
-      "startDate": "03-2020",
-      "summary": "Creating physics content at Bootcamp.com, an exam preparation service for aspiring optometry students preparing for the Optometry Admissions Test (OAT).",
-      "highlights": ["Lead a team of 3 to write and edit hundreds of physics problems and solutions used by thousands of pre-optometry students.",
-                     "Analyze student performance data to identify weak content areas and organize tasks to strategically improve question accuracy and relevancy.",
-                     "Design new physics diagrams and illustrations using Adobe Illustrator to support student learning and comprehension."]
-    }
-  ],
-  "technical work": [
+  "Technical Experience": [
     {
       "name": "Institute for Advanced Study, Princeton University",
       "position": "Professor of Theoretical Physics",
@@ -76,30 +42,6 @@
       "endDate": "1955-01-01",
       "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
       "highlights": ["Relativity"]
-    }
-  ],
-  "volunteer": [
-    {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "url": "https://example.com",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": [
-        "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.",
-        "Men of the year 2014 by Time magazine"
-      ]
-    }
-  ],
-  "awards": [
-    {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
     }
   ],
 
@@ -172,57 +114,27 @@
   ],
   "skills": [
     {
-      "name": "Key Expertise",
-      "icon": "fa-solid fa-tag",
+      "name": "Physics",
+      "level": "Master",
+      "icon": "fa-solid fa-hashtag",
       "keywords": [
-        "Graphics Programming",
-        "Rendering Pipelines",
-        "Python Scripting",
-        "Image & Video Processing",
-        "Pipeline Automation",
-        "3D Modeling & Rigging",
-        "Illustration",
-        "Storyboarding",
-        "Compositing",
-        "2D Animation"
-      ]
-    },
-    {
-      "name": "Pipeline & Development Tools",
-      "icon": "fa-solid fa-tag",
-      "keywords": [
-        "C/C++",
-        "Python",
-        "Java",
-        "MEL",
-        "OpenGL",
-        "CUDA",
-        "Git",
-        "Valgrind"
-      ]
-    },
-    {
-      "name": "Animation & Design",
-      "keywords": [
-        "Maya",
-        "Blender",
-        "Photoshop",
-        "Illustrator",
-        "After Effects",
-        "Toon Boom Harmony",
-        "Storyboard Pro",
-        "TVPaint"
+        "Quantum Mechanics",
+        "Quantum Computing",
+        "Quantum Information",
+        "Quantum Cryptography",
+        "Quantum Communication",
+        "Quantum Teleportation"
       ]
     }
   ],
   "languages": [
     {
-      "language": "English",
+      "language": "German",
       "fluency": "Native speaker",
       "icon": ""
     },
     {
-      "language": "Chinese ",
+      "language": "English",
       "fluency": "Fluent",
       "icon": ""
     }
