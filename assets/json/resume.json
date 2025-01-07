@@ -203,6 +203,7 @@
     },
     {
       "name": "Animation & Design",
+      "icon": "fa-solid fa-tag",
       "keywords": [
         "Maya",
         "Blender",
