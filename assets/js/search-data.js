@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-projects",
           title: "projects",
-          description: "An overview of some of the work I&#39;ve done professionally and at UC Berkeley.",
+          description: "An overview of some of the work I&#39;ve done professionally, at UC Berkeley, or for my own learning.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
