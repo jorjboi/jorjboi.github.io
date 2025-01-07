@@ -2,7 +2,7 @@
 layout: page
 title: projects
 permalink: /projects/
-description: An overview of some of the work I've done professionally and at UC Berkeley.
+description: An overview of some of the work I've done professionally, at UC Berkeley, or for my own learning.
 nav: true
 nav_order: 2
 display_categories: [work]

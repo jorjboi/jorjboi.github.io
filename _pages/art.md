@@ -27,18 +27,15 @@ nav_order: 3
 
   .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
+    max-width: 100%;
+    margin: 0 auto;
   }
 
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .video-container video {
     width: 100%;
-    height: 100%;
-    border: none;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 </style>
 
@@ -73,11 +70,15 @@ nav_order: 3
       <h2>Film</h2>
       <div class="video-container">
         <!-- Embed your video here -->
-        <iframe src="https://www.youtube.com/embed/your-video-id" allowfullscreen></iframe>
+        <video controls>
+          <source src="/path/to/your-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </section>
   </article>
 </div>
+
 
 <!-- 
 For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
