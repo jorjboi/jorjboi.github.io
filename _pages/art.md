@@ -7,27 +7,33 @@ nav: true
 nav_order: 3
 ---
 
-
 <style>
   .art-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
     margin: 40px 0;
   }
 
+  .art-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+  }
+
   .art-item {
-    width: calc(33% - 20px);
-    max-width: 300px;
+    flex: 1;
     text-align: center;
+    display: flex;
+    justify-content: center;
   }
 
   .art-item img {
-    width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 500px;
+    max-width: 100%;
+    width: auto;
     margin-bottom: 10px;
   }
 
@@ -58,32 +64,42 @@ nav_order: 3
   }
 </style>
 
-<div class="post">
-  <!-- <header class="post-header">
-    <h1 class="post-title">h1>
-    <p class="post-description"></p>
-  </header> -->
-
-  <article>
-    <div class="art-container">
-      <div class="art-item">
-        <img src="/path/to/art1.jpg" alt="Artwork 1">
-        <h3>Title of Artwork 1</h3>
-        <p>Short description of artwork 1.</p>
-      </div>
-      <div class="art-item">
-        <img src="/path/to/art2.jpg" alt="Artwork 2">
-        <h3>Title of Artwork 2</h3>
-        <p>Short description of artwork 2.</p>
-      </div>
-      <div class="art-item">
-        <img src="/path/to/art3.jpg" alt="Artwork 3">
-        <h3>Title of Artwork 3</h3>
-        <p>Short description of artwork 3.</p>
-      </div>
-      <!-- Add more items as needed -->
+<article>
+  <!-- Row with 1 item -->
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
     </div>
+  </div>
 
+  <!-- Row with 2 items -->
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+      <img src="/assets/img/art/jbrekkie.jpg" alt="Artwork 3">
+    </div>
+  </div>
+
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/late_nighters.gif" alt="Artwork 1">
+    </div>
+  </div>
+
+  <!-- Row with 3 items -->
+  <!-- <div class="art-row">
+    <div class="art-item">
+      <img src="/path/to/art4.jpg" alt="Artwork 4">
+    </div>
+    <div class="art-item">
+      <img src="/path/to/art5.jpg" alt="Artwork 5">
+    </div>
+    <div class="art-item">
+      <img src="/path/to/art6.jpg" alt="Artwork 6">
+    </div>
+  </div> -->
 
     <section class="art-section" id="film">
       <h2>Film</h2>
