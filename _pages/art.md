@@ -35,7 +35,6 @@ nav_order: 3
     width: 100%; /* Ensures full width within the container */
     object-fit: contain; /* Maintain aspect ratio without distorting image */
     margin-bottom: 10px;
-    cursor: pointer;
   }
 
   .video-container {
@@ -77,7 +76,6 @@ nav_order: 3
         </div>
   </div>
   <!-- Row with 1 item -->
-  
   <!-- Row with 2 items -->
   <div class="art-row">
     <div class="art-item">
@@ -105,7 +103,29 @@ nav_order: 3
       <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
     </div>
   </div>
+</section>
 
+<section class="art-section" id="CGI">
+<h2>CGI</h2>
+    <div class="art-row">
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/day_1.jpg" alt="Artwork 1">
+        </div>
+    </div>
+     <div class="art-row">
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/day_2.jpg" alt="Artwork 1">
+        </div>
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/day_3.jpg" alt="Artwork 1">
+        </div>
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/day_4.jpg" alt="Artwork 1">
+        </div>
+    </div>
+  <!-- Row with 1 item -->
+  <!-- Row with 2 items -->
+  
 </section>
 
 <section class="art-section" id="life-drawing">
@@ -133,6 +153,12 @@ nav_order: 3
     </div>
     <div class="art-item">
             <img src="/assets/img/art/3.jpg" alt="Artwork 3">
+    </div>
+  </div>
+
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/palace_of_fine_arts.jpg" alt="Artwork 1">
     </div>
   </div>
   
