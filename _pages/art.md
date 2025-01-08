@@ -31,7 +31,7 @@ nav_order: 3
 
   .art-item img {
     height: auto;
-    max-height: 500px; /* Ensures uniform height */
+    max-height: 600px; /* Ensures uniform height */
     width: 100%; /* Ensures full width within the container */
     object-fit: contain; /* Maintain aspect ratio without distorting image */
     margin-bottom: 10px;
@@ -71,21 +71,20 @@ nav_order: 3
 
 <section class="art-section" id="illustration">
     <h2>Illustration</h2>
-  <!-- Row with 1 item -->
-  <div class="art-row">
-    <div class="art-item">
-      <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
-    </div>
+    <div class="art-row">
+        <div class="art-item">
+            <img src="/assets/img/art/man_and_dog.jpg" alt="Artwork 1">
+        </div>
   </div>
+  <!-- Row with 1 item -->
+  
   <!-- Row with 2 items -->
   <div class="art-row">
     <div class="art-item">
-            <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
+            <img src="/assets/img/art/izakaya.jpg" alt="Artwork 2">
     </div>
     <div class="art-item">
-        <a href="/assets/img/art/jbrekkie.jpg" data-lightbox="art-gallery">
             <img src="/assets/img/art/jbrekkie.jpg" alt="Artwork 3">
-        </a>
     </div>
   </div>
   <div class="art-row">
@@ -94,41 +93,50 @@ nav_order: 3
     </div>
   </div>
   <div class="art-row">
+     </div>
+  <div class="art-row">
     <div class="art-item">
-        <img src="/assets/img/art/snowy_woods.jpg" alt="Artwork 1">
+      <img src="/assets/img/art/snowy_woods.jpg" alt="Artwork 1">
     </div>
   </div>
+  </div>
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
+    </div>
+  </div>
+
 </section>
 
 <section class="art-section" id="life-drawing">
     <h2>Life Drawing</h2>
   <!-- Row with 1 item -->
-  <div class="art-row">
-    <div class="art-item">
-      <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
-    </div>
-  </div>
   <!-- Row with 2 items -->
   <div class="art-row">
     <div class="art-item">
             <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
     </div>
     <div class="art-item">
-        <a href="/assets/img/art/jbrekkie.jpg" data-lightbox="art-gallery">
-            <img src="/assets/img/art/jbrekkie.jpg" alt="Artwork 3">
-        </a>
+            <img src="/assets/img/art/tatted_lifedrawing.jpg" alt="Artwork 3">
     </div>
   </div>
+
   <div class="art-row">
     <div class="art-item">
-        <img src="/assets/img/art/late_nighters.gif" alt="Artwork 1">
+      <img src="/assets/img/art/week3_lifedraw.jpg" alt="Artwork 1">
     </div>
   </div>
+
   <div class="art-row">
     <div class="art-item">
-        <img src="/assets/img/art/snowy_woods.jpg" alt="Artwork 1">
+            <img src="/assets/img/art/0.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+            <img src="/assets/img/art/3.jpg" alt="Artwork 3">
     </div>
   </div>
+  
+
 </section>
 
 
