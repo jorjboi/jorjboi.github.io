@@ -8,18 +8,18 @@ nav_order: 3
 ---
 
 <style>
-  .art-container {
+  .art-section {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 40px 0;
+    flex-direction: column;
+    margin: 100px 0;
   }
 
   .art-row {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
     width: 100%;
+    gap: 10px; /* Minimized gap between images */
+    margin-bottom: 20px; /* Controlled space between rows */
   }
 
   .art-item {
@@ -31,20 +31,11 @@ nav_order: 3
 
   .art-item img {
     height: auto;
-    max-height: 500px;
-    max-width: 100%;
-    width: auto;
+    max-height: 500px; /* Ensures uniform height */
+    width: 100%; /* Ensures full width within the container */
+    object-fit: contain; /* Maintain aspect ratio without distorting image */
     margin-bottom: 10px;
-  }
-
-  .art-item h3 {
-    font-size: 1.2em;
-    margin: 0;
-  }
-
-  .art-item p {
-    font-size: 0.9em;
-    color: #666;
+    cursor: pointer;
   }
 
   .video-container {
@@ -62,31 +53,88 @@ nav_order: 3
     height: 100%;
     border: none;
   }
+  .lightboxOverlay {
+    background-color: rgba(0, 0, 0, 0.8); /* Set lower opacity (default is 0.8) */
+  }
 </style>
 
+
 <article>
+
+<section class="art-section" id="film">
+      <h2>Film</h2>
+      <div class="video-container">
+        <!-- Embed your video here -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/8dKbrDJAVrU?si=625nRcwo0GzEU_xl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+</section>
+
+<section class="art-section" id="illustration">
+    <h2>Illustration</h2>
   <!-- Row with 1 item -->
   <div class="art-row">
     <div class="art-item">
       <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
     </div>
   </div>
-
   <!-- Row with 2 items -->
   <div class="art-row">
     <div class="art-item">
-      <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
+            <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
     </div>
     <div class="art-item">
-      <img src="/assets/img/art/jbrekkie.jpg" alt="Artwork 3">
+        <a href="/assets/img/art/jbrekkie.jpg" data-lightbox="art-gallery">
+            <img src="/assets/img/art/jbrekkie.jpg" alt="Artwork 3">
+        </a>
     </div>
   </div>
-
   <div class="art-row">
     <div class="art-item">
-      <img src="/assets/img/art/late_nighters.gif" alt="Artwork 1">
+        <img src="/assets/img/art/late_nighters.gif" alt="Artwork 1">
     </div>
   </div>
+  <div class="art-row">
+    <div class="art-item">
+        <img src="/assets/img/art/snowy_woods.jpg" alt="Artwork 1">
+    </div>
+  </div>
+</section>
+
+<section class="art-section" id="life-drawing">
+    <h2>Life Drawing</h2>
+  <!-- Row with 1 item -->
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
+    </div>
+  </div>
+  <!-- Row with 2 items -->
+  <div class="art-row">
+    <div class="art-item">
+            <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+        <a href="/assets/img/art/jbrekkie.jpg" data-lightbox="art-gallery">
+            <img src="/assets/img/art/jbrekkie.jpg" alt="Artwork 3">
+        </a>
+    </div>
+  </div>
+  <div class="art-row">
+    <div class="art-item">
+        <img src="/assets/img/art/late_nighters.gif" alt="Artwork 1">
+    </div>
+  </div>
+  <div class="art-row">
+    <div class="art-item">
+        <img src="/assets/img/art/snowy_woods.jpg" alt="Artwork 1">
+    </div>
+  </div>
+</section>
+
+
+
+
+</article>
 
   <!-- Row with 3 items -->
   <!-- <div class="art-row">
@@ -101,15 +149,6 @@ nav_order: 3
     </div>
   </div> -->
 
-    <section class="art-section" id="film">
-      <h2>Film</h2>
-      <div class="video-container">
-        <!-- Embed your video here -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/8dKbrDJAVrU?si=625nRcwo0GzEU_xl&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-    </section>
-  </article>
-</div>
 
 
 <!-- 
