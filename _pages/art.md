@@ -52,9 +52,6 @@ nav_order: 3
     height: 100%;
     border: none;
   }
-  .lightboxOverlay {
-    background-color: rgba(0, 0, 0, 0.8); /* Set lower opacity (default is 0.8) */
-  }
 </style>
 
 
@@ -75,8 +72,6 @@ nav_order: 3
             <img src="/assets/img/art/man_and_dog.jpg" alt="Artwork 1">
         </div>
   </div>
-  <!-- Row with 1 item -->
-  <!-- Row with 2 items -->
   <div class="art-row">
     <div class="art-item">
             <img src="/assets/img/art/izakaya.jpg" alt="Artwork 2">
@@ -138,15 +133,17 @@ nav_order: 3
             <img src="/assets/img/art/modeling/drama2.jpg" alt="Artwork 1">
         </div>
     </div>
-  <!-- Row with 1 item -->
-  <!-- Row with 2 items -->
-  
+    <div class="video-container">
+      <!-- Embed MP4 video -->
+      <video controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        <source src="/assets/videos/babies_dont_wear_diapers.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
 </section>
 
 <section class="art-section" id="life-drawing">
     <h2>Life Drawing</h2>
-  <!-- Row with 1 item -->
-  <!-- Row with 2 items -->
   <div class="art-row">
     <div class="art-item">
             <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
