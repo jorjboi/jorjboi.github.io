@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-art",
           title: "art",
-          description: "Under construction!",
+          description: "A collection of films, CGI exercises, illustrations, and life drawings.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/art/";
