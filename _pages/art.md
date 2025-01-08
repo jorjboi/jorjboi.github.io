@@ -97,7 +97,6 @@ nav_order: 3
       <img src="/assets/img/art/snowy_woods.jpg" alt="Artwork 1">
     </div>
   </div>
-  </div>
   <div class="art-row">
     <div class="art-item">
       <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
@@ -109,18 +108,34 @@ nav_order: 3
 <h2>CGI</h2>
     <div class="art-row">
         <div class="art-item">
-            <img src="/assets/img/art/modeling/day_1.jpg" alt="Artwork 1">
+            <img src="/assets/img/art/modeling/day1.jpg" alt="Artwork 1">
         </div>
     </div>
      <div class="art-row">
         <div class="art-item">
-            <img src="/assets/img/art/modeling/day_2.jpg" alt="Artwork 1">
+            <img src="/assets/img/art/modeling/day2.jpg" alt="Artwork 1">
         </div>
         <div class="art-item">
-            <img src="/assets/img/art/modeling/day_3.jpg" alt="Artwork 1">
+            <img src="/assets/img/art/modeling/day3.jpg" alt="Artwork 1">
         </div>
         <div class="art-item">
-            <img src="/assets/img/art/modeling/day_4.jpg" alt="Artwork 1">
+            <img src="/assets/img/art/modeling/day4.jpg" alt="Artwork 1">
+        </div>
+    </div>
+    <div class="art-row">
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/night3.jpg" alt="Artwork 1">
+        </div>
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/night2.jpg" alt="Artwork 1">
+        </div>
+    </div>
+    <div class="art-row">
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/drama1.jpg" alt="Artwork 1">
+        </div>
+        <div class="art-item">
+            <img src="/assets/img/art/modeling/drama2.jpg" alt="Artwork 1">
         </div>
     </div>
   <!-- Row with 1 item -->
