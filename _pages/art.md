@@ -2,7 +2,7 @@
 layout: page
 permalink: /art/
 title: art
-description: Under construction!
+description: A collection of films, CGI exercises, illustrations, and life drawings.
 nav: true
 nav_order: 3
 ---
@@ -165,6 +165,14 @@ nav_order: 3
     </div>
     <div class="art-item">
             <img src="/assets/img/art/3.jpg" alt="Artwork 3">
+    </div>
+  </div>
+  <div class="art-row">
+    <div class="art-item">
+            <img src="/assets/img/art/zoo.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+            <img src="/assets/img/art/reptiles.jpg" alt="Artwork 3">
     </div>
   </div>
 
