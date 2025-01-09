@@ -11,7 +11,7 @@ profile:
   image_circular: false # crops the image to make it circular
   more_info:
     <p>georgegeng@alum.calarts.edu</p>
-    <p>ggeng@berkeley.edu</p>
+   # <p>ggeng@berkeley.edu</p>
   
 
 news: false # includes a list of news items
