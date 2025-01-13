@@ -99,6 +99,49 @@ nav_order: 3
   </div>
 </section>
 
+
+<section class="art-section" id="life-drawing">
+    <h2>Life Drawing</h2>
+  <div class="art-row">
+    <div class="art-item">
+            <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+            <img src="/assets/img/art/tatted_lifedrawing.jpg" alt="Artwork 3">
+    </div>
+  </div>
+
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/week3_lifedraw.jpg" alt="Artwork 1">
+    </div>
+  </div>
+
+  <div class="art-row">
+    <div class="art-item">
+            <img src="/assets/img/art/0.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+            <img src="/assets/img/art/3.jpg" alt="Artwork 3">
+    </div>
+  </div>
+  <div class="art-row">
+    <div class="art-item">
+            <img src="/assets/img/art/zoo.jpg" alt="Artwork 2">
+    </div>
+    <div class="art-item">
+            <img src="/assets/img/art/reptiles.jpg" alt="Artwork 3">
+    </div>
+  </div>
+
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/palace_of_fine_arts.jpg" alt="Artwork 1">
+    </div>
+  </div>
+</section>
+
+
 <section class="art-section" id="CGI">
 <h2>CGI</h2>
     <div class="art-row">
@@ -141,52 +184,6 @@ nav_order: 3
       </video>
     </div>
 </section>
-
-<section class="art-section" id="life-drawing">
-    <h2>Life Drawing</h2>
-  <div class="art-row">
-    <div class="art-item">
-            <img src="/assets/img/art/mav-min.jpg" alt="Artwork 2">
-    </div>
-    <div class="art-item">
-            <img src="/assets/img/art/tatted_lifedrawing.jpg" alt="Artwork 3">
-    </div>
-  </div>
-
-  <div class="art-row">
-    <div class="art-item">
-      <img src="/assets/img/art/week3_lifedraw.jpg" alt="Artwork 1">
-    </div>
-  </div>
-
-  <div class="art-row">
-    <div class="art-item">
-            <img src="/assets/img/art/0.jpg" alt="Artwork 2">
-    </div>
-    <div class="art-item">
-            <img src="/assets/img/art/3.jpg" alt="Artwork 3">
-    </div>
-  </div>
-  <div class="art-row">
-    <div class="art-item">
-            <img src="/assets/img/art/zoo.jpg" alt="Artwork 2">
-    </div>
-    <div class="art-item">
-            <img src="/assets/img/art/reptiles.jpg" alt="Artwork 3">
-    </div>
-  </div>
-
-  <div class="art-row">
-    <div class="art-item">
-      <img src="/assets/img/art/palace_of_fine_arts.jpg" alt="Artwork 1">
-    </div>
-  </div>
-  
-
-</section>
-
-
-
 
 </article>
 
