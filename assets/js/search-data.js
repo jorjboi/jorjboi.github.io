@@ -23,13 +23,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/art/";
           },
-        },{id: "nav-papers",
-          title: "papers",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/papers/";
-          },
         },{id: "nav-cv",
           title: "cv",
           description: "Engineer and animation student interested in work at the intersection of art, computer science, and storytelling.",
