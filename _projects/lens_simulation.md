@@ -4,7 +4,7 @@ title: Lens Simulation
 description: Simulating focal length and aperture adjustment using lightfields. 
 img: assets/img/chessboard.gif
 importance: 3
-category: work
+category: fun
 related_publications: false
 ---
 
