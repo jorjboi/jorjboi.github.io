@@ -8,7 +8,17 @@ category: work
 related_publications: false
 ---
 
+<!-- Include MathJax -->
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
 Under construction!
+
+- [Overview](#overview)
+- [Mass-Spring System](#mass-spring-system)
+- [Numerical Integration](#numerical-integration)
+
 
 ## Overview
 
@@ -20,9 +30,9 @@ Here, I implement this mass-spring system and accelerate neighbor detection and 
 
 Our model for the cloth is an m x n grid of identical masses connected by massless springs. There are 3 different types of spring constraints:
 
-<ol>
-    <li> Structural constraints exist between a mass `[i, j]` and masses `[i + 1, j]` and `[i, j + 1]`. They help define the topology of the cloth and simulate “stretching” stresses on the cloth. </li>
-    <li> Shearing constraints exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. </li>
-    <li> Flexion constraints exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j+ 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.</li>
-</ol>
 
+1. Structural constraints exist between a mass `[i, j]` and masses `[i + 1, j]` and `[i, j + 1]`. They help define the topology of the cloth and simulate “stretching” stresses on the cloth.
+2. Shearing constraints exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
+3. Flexion constraints exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j+ 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
+
+## Numerical Integration
