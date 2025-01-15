@@ -413,6 +413,11 @@ ninja.data = [{
           description: "A GLSL shader to create clouds and simulate different lighting scenarios.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-cloth-simulation",
+          title: 'Cloth Simulation',
+          description: "Cloth simulation using a point mass-spring system, along with various GLSL shaders.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/cloth_sim/";
             },},{id: "projects-cloud-shader",
           title: 'Cloud Shader',
           description: "A GLSL shader to create clouds and simulate different lighting scenarios.",
