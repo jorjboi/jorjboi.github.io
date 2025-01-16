@@ -77,7 +77,7 @@ We find \\(a_t\\) by diving the net force by the mass and can approximate \\(v_t
 
 $$x_{t + dt} = x_t + (x_t – x_{t-dt}) + a_tdt^2$$
 
-Finally, we introduce a damping term $d$ to simulate energy loss over time from friction. 
+Finally, we introduce a damping term \\(d$\\) to simulate energy loss over time from friction. 
 
 $$x_{t + dt} = x_t + (1-d)(x_t – x_{t-dt}) + a_tdt^2$$
 
