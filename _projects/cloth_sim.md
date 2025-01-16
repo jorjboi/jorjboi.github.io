@@ -35,13 +35,13 @@ Our model for the cloth is an `m x n` grid of identical masses connected by mass
 3. **Flexion constraints** exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/clothsim/structural.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
         <div class="caption">
             Structural and flexion constraints
         </div>
     </div>
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/clothsim/shearing.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
         <div class="caption">
             Shearing constraints
@@ -51,10 +51,14 @@ Our model for the cloth is an `m x n` grid of identical masses connected by mass
 
 The grid with all the spring constraints between point masses set up is shown below:
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/clothsim/all_constraints.png" title="Decoder pipeline" class="img-fluid rounded z-depth-1" %}
     </div>
+</div>
+
+<div class="caption">
+    Mass-spring grid
 </div>
 
 ## Numerical Integration
