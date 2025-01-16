@@ -32,13 +32,13 @@ Our model for the cloth is an `m x n` grid of identical masses connected by mass
 
 1. **Structural constraints** exist between a mass `[i, j]` and masses `[i + 1, j]` and `[i, j + 1]`. They help define the topology of the cloth and simulate “stretching” stresses on the cloth.
 2. **Shearing constraints** exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
-3. **Flexion constraints** exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
+3. **Bending constraints** exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/clothsim/structural.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
         <div class="caption">
-            Structural and flexion constraints
+            Structural and bending constraints
         </div>
     </div>
     <div class="col-sm-4 mt-3 mt-md-0">
