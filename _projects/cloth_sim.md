@@ -36,3 +36,8 @@ Our model for the cloth is an m x n grid of identical masses connected by massle
 3. Flexion constraints exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j+ 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
 
 ## Numerical Integration
+The total force acting on a mass at any instant can be found by first applying any external forces and then the forces from the spring constraints. I do this by looping over all the springs and calculating the force a spring exerts on the masses at either end using Hooke’s Law: 
+
+$$ F_s = k_s * (\| p_a - p_b \| - l) $$
+ 
+
