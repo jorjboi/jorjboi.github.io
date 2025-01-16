@@ -28,11 +28,11 @@ Here, I implement this mass-spring system and accelerate neighbor detection and 
 
 ## Mass-Spring System
 
-Our model for the cloth is an m x n grid of identical masses connected by massless springs. There are 3 different types of spring constraints:
+Our model for the cloth is an `m x n` grid of identical masses connected by massless springs. There are 3 different types of spring constraints:
 
-1. Structural constraints exist between a mass `[i, j]` and masses `[i + 1, j]` and `[i, j + 1]`. They help define the topology of the cloth and simulate “stretching” stresses on the cloth.
-2. Shearing constraints exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
-3. Flexion constraints exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
+1. **Structural constraints** exist between a mass `[i, j]` and masses `[i + 1, j]` and `[i, j + 1]`. They help define the topology of the cloth and simulate “stretching” stresses on the cloth.
+2. **Shearing constraints** exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
+3. **Flexion constraints** exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-6 mt-3 mt-md-0">
@@ -61,6 +61,29 @@ The grid with all the spring constraints between point masses set up is shown be
 The total force acting on a mass at any instant can be found by first applying any external forces and then the forces from the spring constraints. I do this by looping over all the springs and calculating the force a spring exerts on the masses at either end using Hooke’s Law: 
 
 $$ F_s = k_s * (\| p_a - p_b \| - l) $$
+
+where $k_s$ is the spring constant, $p_a$ and $p_b$ are the positions of the two end masses `a` and `b` respectively, and $l$ is the spring’s rest length. For flexion constraints, I also scale the force by 0.2 to keep them weaker than structural or shearing constraints.
+
+Using the net force on each mass and numerical integration, I can find the change in each mass’s position at every time step $dt$. Here, I use **Verlet Integration**. Given a particle position $x_t$, its current velocity $v_t$, and its acceleration $a_t$, we calculate the next position $x_{t + dt}$ as:
+
+$$x_{t + dt} = x_t + v_tdt + a_tdt^2$$
+
+We find $a_t$ by diving the net force by the mass and can approximate $v_tdt$ as $x_t – x_{t-dt}$:
+
+
+$$x_{t + dt} = x_t + (x_t – x_{t-dt}) + a_tdt^2$$
+
+Finally, we introduce a damping term $d$ to simulate energy loss over time from friction. 
+
+$$x_{t + dt} = x_t + (1-d)(x_t – x_{t-dt}) + a_tdt^2$$
+
+Additionally, the positions were constrained so that the spring was never elongated by more than 10%. If it exceeds 10%, I adjust the positions of the masses to satisfy the constraint. The adjustment is shared equally between two masses unless one of them is pinned, in which case the entire adjustment goes to the unpinned mass.
+
+
+
+
+
+
 
 
  
