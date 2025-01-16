@@ -66,13 +66,13 @@ The total force acting on a mass at any instant can be found by first applying a
 
 $$ F_s = k_s * (\| p_a - p_b \| - l) $$
 
-where $k_s$ is the spring constant, $p_a$ and $p_b$ are the positions of the two end masses `a` and `b` respectively, and $l$ is the spring’s rest length. For flexion constraints, I also scale the force by 0.2 to keep them weaker than structural or shearing constraints.
+where \(k_s\) is the spring constant, \(p_a\) and \(p_b)\ are the positions of the two end masses `a` and `b` respectively, and \(l\) is the spring’s rest length. For flexion constraints, I also scale the force by 0.2 to keep them weaker than structural or shearing constraints.
 
-Using the net force on each mass and numerical integration, I can find the change in each mass’s position at every time step $dt$. Here, I use **Verlet Integration**. Given a particle position $x_t$, its current velocity $v_t$, and its acceleration $a_t$, we calculate the next position $x_{t + dt}$ as:
+Using the net force on each mass and numerical integration, I can find the change in each mass’s position at every time step \(dt)\. Here, I use **Verlet Integration**. Given a particle position \(x_t\), its current velocity \(v_t\), and its acceleration \(a_t\), we calculate the next position \(x_{t + dt}\) as:
 
 $$x_{t + dt} = x_t + v_tdt + a_tdt^2$$
 
-We find $a_t$ by diving the net force by the mass and can approximate $v_tdt$ as $x_t – x_{t-dt}$:
+We find \(a_t\) by diving the net force by the mass and can approximate \(v_tdt\) as \(x_t – x_{t-dt}\):
 
 
 $$x_{t + dt} = x_t + (x_t – x_{t-dt}) + a_tdt^2$$
