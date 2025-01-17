@@ -105,7 +105,18 @@ Here is the cloth lying on a plane:
 To prevent the cloth from folding over and intersecting with itself, we also need to handle self-collisions. The naive \\(O(n^2))\\ way of doing this would be to check if every mass is about to collide with every other mass in the grid at every time step, but this is too inefficient for 
 real-time simulations.
 
-Instead, I implement spatial hashing. I subdivide the entire space into the scene into equally sized 3D boxes, map each box's coordinate to a float, and then build a hash table from each float to a list of point masses located in the box. Then, at every time step, I only need to build the hash table and iterate through the point masses. For each point mass, I use the hash table to find a list of neighboring point masses in the same 3D volume and check for collisions between each point mass and its neighbors. 
+Instead, I implement spatial hashing. I subdivide the entire space into the scene into equally sized 3D boxes, map each box to a unique float, and then build a hash table from each float to a list of point masses located in the box. Then, at every time step, I only need to build the hash table and iterate through the point masses. For each point mass, I use the hash table to find a list of neighboring point masses in the same 3D volume and check for collisions between each point mass and its neighbors.
+
+For mapping a 3D volume to a float, I take the coordinates of the box \\((x, y, z)\\) and return \\(p^2x + py + z\\), where \\(p\\) is a sufficiently large prime number. Because \\(p\\) is prime, \\(p^2\\), \\(p\\), and \\(1)\\ are unlikely to have any linear combinations that produce the same value. A large enough prime creates a larger separation between \\(p^2\\), \\(p\\), and \\(1)\\, which reduces the risk of collisions for large ranges of \\((x, y, z)\\).
+
+
+To see if two point masses are about to collide, I check if they are \\(2 * cloth\text{_}thicknesses\\) apart and apply a correction vector to ensure they are. The final correction vector applied to each point mass is the average of all correction vectors from its neighboring point masses, scaled down by the number of simulation steps to avoid too many sudden position corrections.
+
+Below are the results of the cloth falling onto itself:
+
+
+Note that as we increase the spring constant \\(k_s\\), the cloth folds upon itself fewer times because it simulates a stiffer fabric.
+
  
 
 
