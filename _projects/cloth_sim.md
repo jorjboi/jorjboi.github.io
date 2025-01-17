@@ -94,7 +94,7 @@ Specifically, for a sphere we find a correction vector that goes from the sphere
 
 We apply a \\((1 - f)\\) scaling factor to the correction vector to account for loss of energy from friction. 
 
-$$p_t  = (1 - f) * correction\text{_}vector + p_{t – dt}|$$
+$$p_t  = (1 - f) * correction\text{_}vector + p_{t – dt}$$
 
 Here are the results of running the cloth collision test with a sphere. As we increase \\(k_s\\), the stretchiness factor of the cloth, we see that it maintains more of its shape and becomes more rigid.
 
@@ -107,7 +107,7 @@ real-time simulations.
 
 Instead, I implement spatial hashing. I subdivide the entire space into the scene into equally sized 3D boxes, map each box to a unique float, and then build a hash table from each float to a list of point masses located in the box. Then, at every time step, I only need to build the hash table and iterate through the point masses. For each point mass, I use the hash table to find a list of neighboring point masses in the same 3D volume and check for collisions between each point mass and its neighbors.
 
-For mapping a 3D volume to a float, I take the coordinates of the box \\((x, y, z)\\) and return \\(p^2x + py + z\\), where \\(p\\) is a sufficiently large prime number. Because \\(p\\) is prime, \\(p^2\\), \\(p\\), and \\(1)\\ are unlikely to have any linear combinations that produce the same value. A large enough prime creates a larger separation between \\(p^2\\), \\(p\\), and \\(1)\\, which reduces the risk of collisions for large ranges of \\((x, y, z)\\).
+For mapping a 3D volume to a float, I take the coordinates of the box \\((x, y, z)\\) and return \\(p^2x + py + z\\), where \\(p\\) is a sufficiently large prime number. Because \\(p\\) is prime, \\(p^2\\), \\(p\\), and \\(1\\) are unlikely to have any linear combinations that produce the same value. A large enough prime creates a larger separation between \\(p^2\\), \\(p\\), and \\(1\\), which reduces the risk of collisions for large ranges of \\((x, y, z)\\).
 
 
 To see if two point masses are about to collide, I check if they are \\(2 * cloth\text{_}thicknesses\\) apart and apply a correction vector to ensure they are. The final correction vector applied to each point mass is the average of all correction vectors from its neighboring point masses, scaled down by the number of simulation steps to avoid too many sudden position corrections.
