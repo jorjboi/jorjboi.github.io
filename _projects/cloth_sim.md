@@ -110,7 +110,7 @@ Instead, I implement spatial hashing. I subdivide the entire space into the scen
 For mapping a 3D volume to a float, I take the coordinates of the box \\((x, y, z)\\) and return \\(p^2x + py + z\\), where \\(p\\) is a sufficiently large prime number. Because \\(p\\) is prime, \\(p^2\\), \\(p\\), and \\(1\\) are unlikely to have any linear combinations that produce the same value. A large enough prime creates a larger separation between \\(p^2\\), \\(p\\), and \\(1\\), which reduces the risk of collisions for large ranges of \\((x, y, z)\\).
 
 
-To see if two point masses are about to collide, I check if they are \\(2 * cloth\text{_}thicknesses\\) apart and apply a correction vector to ensure they are. The final correction vector applied to each point mass is the average of all correction vectors from its neighboring point masses, scaled down by the number of simulation steps to avoid too many sudden position corrections.
+To see if two point masses are about to collide, I check if they are `2 * cloth_thicknesses` apart and apply a correction vector to ensure they are. The final correction vector applied to each point mass is the average of all correction vectors from its neighboring point masses, scaled down by the number of simulation steps to avoid too many sudden position corrections.
 
 Below are the results of the cloth falling onto itself:
 
