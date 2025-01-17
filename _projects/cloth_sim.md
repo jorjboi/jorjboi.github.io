@@ -18,7 +18,8 @@ related_publications: false
 - [Overview](#overview)
 - [Mass-Spring System](#mass-spring-system)
 - [Numerical Integration](#numerical-integration)
-
+- [Collision Handling](#collision-handling)
+- [Self-Collisions](#self-collisions)
 
 ## Overview
 
@@ -62,6 +63,7 @@ The grid with all the spring constraints between point masses set up is shown be
 </div>
 
 ## Numerical Integration
+
 The total force acting on a mass at any instant can be found by first applying any external forces and then the forces from the spring constraints. I do this by looping over all the springs and calculating the force a spring exerts on the masses at either end using Hooke’s Law: 
 
 $$ F_s = k_s * (\| p_a - p_b \| - l) $$
@@ -72,23 +74,32 @@ Using the net force on each mass and numerical integration, I can find the chang
 
 $$x_{t + dt} = x_t + v_tdt + a_tdt^2$$
 
-We find \\(a_t\\) by diving the net force by the mass and can approximate \\(v_tdt\\) as \\(x_t – x_{t-dt}\\):
+We find \\(a_t\\) by diving the net force by the mass and can approximate \\(v_tdt\\) as \\(x_t – x_{t - dt}\\):
 
 
-$$x_{t + dt} = x_t + (x_t – x_{t-dt}) + a_tdt^2$$
+$$x_{t + dt} = x_t + (x_t – x_{t - dt}) + a_tdt^2$$
 
 Finally, we introduce a damping term \\(d\\) to simulate energy loss over time from friction. 
 
-$$x_{t + dt} = x_t + (1-d)(x_t – x_{t-dt}) + a_tdt^2$$
+$$x_{t + dt} = x_t + (1 - d)(x_t – x_{t - dt}) + a_tdt^2$$
 
 Additionally, the positions were constrained so that the spring was never elongated by more than 10%. If it exceeds 10%, I adjust the positions of the masses to satisfy the constraint. The adjustment is shared equally between two masses unless one of them is pinned, in which case the entire adjustment goes to the unpinned mass.
 
 
+## Collision Handling
 
+We can simulate collisions with external objects such as a sphere or plane. In either case, if I detect that the location of the mass passes through the surface of the geometry, I “bump” it back up to the surface of the object.
 
+Specifically, for a sphere we find a correction vector that goes from the sphere’s origin to the position of the point mass. For a plane, the correction vector goes from the mass’s last position to a point where the mass should have intersected from the plane if it had traveled from its current position in a straight line to the surface of the plane.
 
+We apply a \\((1 - f)\\) scaling factor to the correction vector to account for loss of energy from friction. 
 
+$$p_t  = (1 - f) * correction_vector + p_{t – dt}|$$
 
+Here are the results of running the cloth collision test with a sphere. As we increase \\(k_s\\), the stretchiness factor of the cloth, we see that it maintains more of its shape and becomes more rigid.
 
+Here is the cloth lying on a plane:
+
+## Self-Collisions
  
 
