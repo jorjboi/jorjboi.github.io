@@ -145,6 +145,17 @@ The default vertex shader also provides the fragment shader with a UV coordinate
 
 We can also encode a height map in a texture to simulate changes in the surface of an object. With bump mapping, we can give the illusion of surface irregularities in height (bumps) by adjusting the normal vectors of an object.
 
+Using a texture map as a height map, I find the local space normals by looking at how the height \\(h(u,v)\\) changes as we make small changes in u or v. We can get \\(h(u,v)\\) from a texture in different ways, such as by taking the `r` channel or the norm of the rgb- vector.
+
+$$
+dU = (h(u + 1 / w, v) - h(u, v)) * k_h * k_n \\
+dV = (h(u, v + 1 / h) - h(u, v)) * k_h * k_n
+$$
+
+
+To turn the local normal back into the model space normal, we can multiply by the tangent-bitangent-normal (TBN) matrix. The tangent vector can be pre-computed from the mesh geometry and loaded into the vertex shader, and passed into the fragment shader from there.
+
+
 
 
 
