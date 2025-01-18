@@ -143,5 +143,9 @@ The default vertex shader also provides the fragment shader with a uv coordinate
 
 # Displacement and Bump Mapping
 
+We can also encode a height map in a texture to simulate changes in the surface of an object. With bump mapping, we can give the illusion of surface irregularities in height (bumps) by adjusting the normal vectors of an object.
+
+
+
 
 
