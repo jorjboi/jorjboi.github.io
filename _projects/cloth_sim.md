@@ -125,7 +125,7 @@ Note that as we increase the spring constant \\(k_s\\), the cloth folds upon its
 
 I first implement diffuse and Blinn-Phong shading using a default vertex shader and different fragment shaders. The default GLSL vertex shader takes in per-vertex model-space attributes `in_position` and `in_normal` and use the model-to-world space and world space-to-screen space matrices to output `v_position` and `v_normal` for the fragment shader.
 
-$$\mathbf{L} = \mathbf{k}_d\ (\mathbf{I} / r^2)\ \max(0, \mathbf{n} \cdot \mathbf{l})\$$
+$$\mathbf{L} = \mathbf{k}_d\ (\mathbf{I} / r^2)\ \max(0, \mathbf{n} \cdot \mathbf{l})$$
 
 The light intensity \\(I\\) and light position are provided as uniforms to the fragment shader, and we can find \\(l\\) (and \\(r\\)) by finding the vector from the light position to `v_position`. We set the alpha of the output color to 1 for diffuse shading.
 
