@@ -139,7 +139,7 @@ The Blinn-Phong fragment shader has the light position and camera position as un
 
 ### Texture Mapping
 
-The default vertex shader also provides the fragment shader with a uv coordinate to index into the texture uniform with the built-in GLSL function `texture(sampler2D tex, vec2 uv)`. Now, we can apply pre-loaded textures to the cloth as well:
+The default vertex shader also provides the fragment shader with a UV coordinate to index into the texture uniform with the built-in GLSL function `texture(sampler2D tex, vec2 uv)`. Now, we can apply pre-loaded textures to the cloth as well:
 
 ### Displacement and Bump Mapping
 
