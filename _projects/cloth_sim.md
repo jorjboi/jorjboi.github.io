@@ -164,7 +164,7 @@ $$ dV = (h(u, v + 1 / h) - h(u, v)) * k_h * k_n $$
 
 To turn the local normal back into the model space normal, we can multiply by the tangent-bitangent-normal (TBN) matrix. The tangent vector can be pre-computed from the mesh geometry and loaded into the vertex shader, and passed into the fragment shader from there.
 
-In displacement mapping, we <i>also</i> modify the positions \\(p)\\ of the vertices in the vertex shader in the direction of the original model space vertex normal \\(n\\), scaled by a factor \\(k_h\\).
+In displacement mapping, we <i>also</i> modify the positions \\(p\\) of the vertices in the vertex shader in the direction of the original model space vertex normal \\(n\\), scaled by a factor \\(k_h\\).
 
 $$\mathbf{p}' = \mathbf{p} + \mathbf{n} * h(u, v) * k_h$$
 
