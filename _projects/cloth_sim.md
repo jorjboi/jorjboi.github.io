@@ -21,6 +21,11 @@ related_publications: false
 - [Collision Handling](#collision-handling)
 - [Self-Collisions](#self-collisions)
 - [GLSL Shaders](#glsl-shaders)
+    - [Diffuse and Blinn-Phong Shading](#diffuse-and-blinn-phong-shading)
+    - [Texture Mapping](#texture-mapping)
+    - [Displacement and Bump Mapping](#displacement-and-bump-mapping)
+    - [Environment Reflection Mapping](#environment-reflection-mapping)
+
 
 ## Overview
 
@@ -155,8 +160,11 @@ $$
 
 To turn the local normal back into the model space normal, we can multiply by the tangent-bitangent-normal (TBN) matrix. The tangent vector can be pre-computed from the mesh geometry and loaded into the vertex shader, and passed into the fragment shader from there.
 
+In displacement mapping, we <i>also</i> modify the positions \\(p)\\ of the vertices in the vertex shader in the direction of the original model space vertex normal \\(n\\), scaled by a factor \\(k_h\\).
+
+$$\mathbf{p}' = \mathbf{p} + \mathbf{n} * h(u, v) * k_h$$
+
+Now, we also observe a change in the geometry of the cloth:
 
 
-
-
-
+#### Environment Reflection Mapping
