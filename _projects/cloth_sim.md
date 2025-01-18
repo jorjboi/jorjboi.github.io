@@ -60,7 +60,7 @@ The grid with all the spring constraints between point masses set up is shown be
 
 <div class="row justify-content-center">
     <div class="col-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/clothsim/all_constraints.png" title="Decoder pipeline" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/all_constraints.png" title="Grid of point masses and springs" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -112,6 +112,12 @@ To prevent the cloth from folding over and intersecting with itself, we also nee
 real-time simulations.
 
 Instead, I implement spatial hashing. I subdivide the entire space into the scene into equally sized 3D boxes, map each box to a unique float, and then build a hash table from each float to a list of point masses located in the box. Then, at every time step, I only need to build the hash table and iterate through the point masses. For each point mass, I use the hash table to find a list of neighboring point masses in the same 3D volume and check for collisions between each point mass and its neighbors.
+
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/spatial_hashing.png" title="Spatial hashing" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
 
 To map a 3D volume to a float, I take the coordinates of the box \\((x, y, z)\\) and return \\(p^2x + py + z\\), where \\(p\\) is a sufficiently large prime number. Because \\(p\\) is prime, \\(p^2\\), \\(p\\), and \\(1\\) are unlikely to have any linear combinations that produce the same value. A large enough prime creates a larger separation between \\(p^2\\), \\(p\\), and \\(1\\), which reduces the risk of collisions for large ranges of \\((x, y, z)\\).
 
