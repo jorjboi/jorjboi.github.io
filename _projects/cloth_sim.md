@@ -121,7 +121,7 @@ Note that as we increase the spring constant \\(k_s\\), the cloth folds upon its
  
 ## GLSL Shaders
 
-# Diffuse and Blinn-Phong Shading
+### Diffuse and Blinn-Phong Shading
 
 I first implement diffuse and Blinn-Phong shading using a default vertex shader and different fragment shaders. The default GLSL vertex shader takes in per-vertex model-space attributes `in_position` and `in_normal` and use the model-to-world space and world space-to-screen space matrices to output `v_position` and `v_normal` for the fragment shader.
 
@@ -137,11 +137,11 @@ $$\mathbf{L} = \mathbf{k}_a\ \mathbf{I}_a\ + \mathbf{k}_d\ (\mathbf{I} / r^2)\ \
 
 The Blinn-Phong fragment shader has the light position and camera position as uniforms, so we can find the incoming and outgoing light directions `w_i` and `w_o`. The vector \\(h\\) is the bisector between `w_i` and `w_o`.
 
-# Texture Mapping
+### Texture Mapping
 
 The default vertex shader also provides the fragment shader with a uv coordinate to index into the texture uniform with the built-in GLSL function `texture(sampler2D tex, vec2 uv)`. Now, we can apply pre-loaded textures to the cloth as well:
 
-# Displacement and Bump Mapping
+### Displacement and Bump Mapping
 
 We can also encode a height map in a texture to simulate changes in the surface of an object. With bump mapping, we can give the illusion of surface irregularities in height (bumps) by adjusting the normal vectors of an object.
 
