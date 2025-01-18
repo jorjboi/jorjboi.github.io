@@ -115,7 +115,7 @@ Instead, I implement spatial hashing. I subdivide the entire space into the scen
 
 <div class="row justify-content-center">
     <div class="col-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/clothsim/spatial_hashing.png" title="Spatial hashing" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/spatial_hash.png" title="Spatial hashing" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
