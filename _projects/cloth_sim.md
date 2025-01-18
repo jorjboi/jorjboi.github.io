@@ -137,8 +137,11 @@ $$\mathbf{L} = \mathbf{k}_a\ \mathbf{I}_a\ + \mathbf{k}_d\ (\mathbf{I} / r^2)\ \
 
 The Blinn-Phong fragment shader has the light position and camera position as uniforms, so we can find the incoming and outgoing light directions `w_i` and `w_o`. The vector \\(h\\) is the bisector between `w_i` and `w_o`.
 
+# Texture Mapping
 
+The default vertex shader also provides the fragment shader with a uv coordinate to index into the texture uniform with the built-in GLSL function `texture(sampler2D tex, vec2 uv)`. Now, we can apply pre-loaded textures to the cloth as well:
 
+# Displacement and Bump Mapping
 
 
 
