@@ -173,3 +173,6 @@ Now, we also observe a change in the geometry of the cloth:
 
 
 #### Environment Reflection Mapping
+Using a pre-computed [cubemap](https://learnopengl.com/Advanced-OpenGL/Cubemaps), we can sample from an environment texture using a 3D direction vector. To get envrionmental reflections on our cloth, we can compute the incoming light direction `w_i` by reflecting the outgoing eye-ray over the surface normal, and use that to sample a cubemap uniform with `texture(samplerCube tex, vec3 dir)`. Below shows the result of the cloth with this mirror-like texture:
+
+
