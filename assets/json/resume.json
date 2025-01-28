@@ -38,7 +38,7 @@
       "position": "Research Engineer",
       "url": "https://x.com/visby_io",
       "location": "San Francisco, CA",
-      "startDate": "08-2018",
+      "startDate": "05-2018",
       "endDate": "02-2020",
       "summary": "Performed experiments to explore models for decoding holographic light field video.",
       "highlights": ["Wrote C++ code and profiled low-level hardware activity to optimize performance, stability, and data throughput as part of a critical feature for the decoding pipeline.",
