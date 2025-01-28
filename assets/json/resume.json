@@ -47,11 +47,11 @@
                     "Learned to write well-documented code for a large repository, apply best-practice system design principles, and take on many roles in a demanding, fast-paced agile environment."]
     },
     {
-      "name": "Blue Sky Studio",
+      "name": "Blue Sky Studios",
       "position": "Animation Studio R&D Intern",
       "url": "https://www.instagram.com/blueskystudios/",
       "location": "Greenwich, CT",
-      "startDate": "05-2017",
+      "startDate": "06-2017",
       "endDate": "08-2017",
       "summary": "Developed and made improvements to proprietary animation pipeline tools for Blue Sky Studios, an animation studio behind films such as Ice Age and The Peanuts Movie.",
       "highlights": ["Collaborated with software engineers and artists to build the groundwork for a node-based material designer and create an intuititve UI for texture artist (Python/PyQt)."]
