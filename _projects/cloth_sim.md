@@ -91,8 +91,8 @@ $$x_{t + dt} = x_t + (1 - d)(x_t – x_{t - dt}) + a_tdt^2$$
 
 Additionally, the positions were constrained so that the spring was never elongated by more than 10%. If it exceeds 10%, I adjust the positions of the masses to satisfy the constraint. The adjustment is shared equally between two masses unless one of them is pinned, in which case the entire adjustment goes to the unpinned mass.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/clothsim/numerical_integration.gif" title="Cloth sim" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
