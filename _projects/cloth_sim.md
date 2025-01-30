@@ -91,8 +91,8 @@ $$x_{t + dt} = x_t + (1 - d)(x_t – x_{t - dt}) + a_tdt^2$$
 
 Additionally, the positions were constrained so that the spring was never elongated by more than 10%. If it exceeds 10%, I adjust the positions of the masses to satisfy the constraint. The adjustment is shared equally between two masses unless one of them is pinned, in which case the entire adjustment goes to the unpinned mass.
 
-<div class="row justify-content-center">
-    <div class="col-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/clothsim/numerical_integration.gif" title="Cloth sim" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -149,13 +149,29 @@ $$\mathbf{L} = \mathbf{k}_d\ (\mathbf{I} / r^2)\ \max(0, \mathbf{n} \cdot \mathb
 
 The light intensity \\(I\\) and light position are provided as uniforms to the fragment shader, and we can find \\(l\\) (and \\(r\\)) by finding the vector from the light position to `v_position`. We set the alpha of the output color to 1 for diffuse shading.
 
-
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/diffuse_shading.png" title="Diffuse Shading" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Diffuse Shading
+</div>
 
 Blinn-Phong shading is just like diffuse shading but with additional ambient light  and specular light terms:
 
 $$\mathbf{L} = \mathbf{k}_a\ \mathbf{I}_a\ + \mathbf{k}_d\ (\mathbf{I} / r^2)\ \max(0, \mathbf{n} \cdot \mathbf{l})\ + \mathbf{k}_s\ (\mathbf{I} / r^2)\ \max(0, \mathbf{n} \cdot \mathbf{h})^p$$
 
 The Blinn-Phong fragment shader has the light position and camera position as uniforms, so we can find the incoming and outgoing light directions `w_i` and `w_o`. The vector \\(h\\) is the bisector between `w_i` and `w_o`.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/phong_shading.png" title="Blinn-Phong Shading" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Blinn-Phong Shading
+</div>
 
 #### Texture Mapping
 
