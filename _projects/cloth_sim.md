@@ -113,6 +113,13 @@ $$p_t  = (1 - f) * correction\text{_}vector + p_{t – dt}$$
 
 Here are the results of running the cloth collision test with a sphere. As we increase \\(k_s\\), the stretchiness factor of the cloth, we see that it maintains more of its shape and becomes more rigid.
 
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/sphere_collission.gif" title="Sphere collission" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+
 Here is the cloth lying on a plane:
 
 ## Self-Collisions
