@@ -115,7 +115,7 @@ Here are the results of running the cloth collision test with a sphere. As we in
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/clothsim/sphere_collission.gif" title="Sphere collission" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/clothsim/sphere_collide.gif" title="Sphere collission" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
