@@ -97,6 +97,11 @@ nav_order: 3
       <img src="/assets/img/art/wedding.jpg" alt="Artwork 1">
     </div>
   </div>
+  <div class="art-row">
+    <div class="art-item">
+      <img src="/assets/img/art/perpendicular_play.jpg" alt="Artwork 1">
+    </div>
+  </div>
 </section>
 
 
