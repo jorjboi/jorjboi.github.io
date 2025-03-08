@@ -1,0 +1,1 @@
+var Orbit={init:function(){controls=new THREE.OrbitControls(cameras[curr_id],renderer.domElement),controls.addEventListener("change",renderOnce),controls.enableDamping=!0,controls.dampingFactor=.25},exit:function(){controls.dispose(),stopRender()}};
