@@ -1,0 +1,250 @@
+<html>
+	<head>
+		<title>Above the Clouds</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="lib/dat.gui.min.js"></script>
+    	<script src="lib/jquery.min.js"></script>
+    	<script src="lib/three.min.js"></script>
+    	<script src="lib/requestAnimationFrame.js"></script>
+    	<script src="lib/perlin.js"></script> 	
+		<script src="lib/MouseControls.js"></script>		
+		<script src="lib/OrbitControls.js"></script>
+		<script src="lib/Emenu.js"></script>
+		  
+		<script id="vs" type="x-shader/x-vertex">		
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+            }
+        </script>
+        <script id="fs" type="x-shader/x-fragment">
+			varying vec2 vUv;
+			uniform float Rotate_X, Rotate_Y, Rotate_Z, Light_Vertical, Light_Horiz, zoom_factor, amplitude, Scene, albedo;
+			float rotate_x = Rotate_X;
+			float rotate_y = Rotate_Y;
+			float rotate_z = Rotate_Z;
+			#define AMPLITUDE 0.35
+			#define FREQUENCY 4.
+		
+			//Noise functions
+			float iqhash( float n ) {
+			   return fract(sin(n)*43758.5453);
+			}
+			float noise( vec3 x ) {
+			   vec3 p = floor(x);
+			   vec3 f = fract(x);
+			   f = f*f*(3.0-2.0*f);
+			   float n = p.x + p.y*57.0 + 113.0*p.z;
+			   return mix(mix(mix( iqhash(n+0.0 ), iqhash(n+1.0 ),f.x),
+							mix( iqhash(n+57.0 ), iqhash(n+58.0 ),f.x),f.y),
+							mix(mix( iqhash(n+113.0), iqhash(n+114.0),f.x),
+							mix( iqhash(n+170.0), iqhash(n+171.0),f.x),f.y),f.z);
+			}
+			//fractal brownian motion
+			float fbm(vec3 x) {
+			    float amp = .3;
+			  	float V = amp * noise( x ); 
+			    amp *= amplitude; 
+			    x *= FREQUENCY;
+			    V += amp * noise( x ); 
+			    amp *= AMPLITUDE; 
+			    x *= FREQUENCY;
+			    V += amp * noise( x ); 
+			   	return clamp( V, 0.0, 1.0 ); 
+			}
+
+			float map(vec3 p){
+			    return p.y*0.05 + (fbm(p*0.3)-0.1) + sin(p.x*0.24 + sin(p.z*.01)*7.)*0.22+0.15 + cos(p.z*0.08)*0.05;
+			//  return (fbm(p*0.3)-0.1)+p.y*0.7+sin(p.x*0.24) + sin(p.z*0.1)*7.0;
+			}
+			float march(vec3 ro, vec3 rd) {
+			    float precis = 0.2;
+			    float h= 1.;
+			    float d = 0.;
+			    for( int i=0; i<32; i++ )
+			    {
+			        if( abs(h)<precis || d>70. ) break;
+			        d += h;
+			        vec3 pos = ro+rd*d;
+			        pos.y += .5;
+			        float res = map(pos)*1.;
+			        h = res;
+			    }
+			    return d;
+			}
+			vec3 lgt = vec3(0);
+			float mapV( vec3 p ){ return clamp(-map(p), 0., 1.);}
+			
+			vec4 marchV(vec3 ro, vec3 rd, float t, vec3 bgc) {
+			    vec4 rz = vec4( 0.0 );
+			    
+			    for( int i=0; i<120; i++ )
+			    {
+			        if(rz.a > 1.0 || t > 200.) break;
+			        
+			        vec3 pos = ro + t*rd;
+			        float den = mapV(pos);
+			     	    
+					vec4 col;
+		
+					if (Scene == 2.0) {
+						col = vec4(0.8, 0.6, 0.6, den); 
+				        col.xyz *= mix(bgc*bgc*2.5,  mix(vec3(0.1,0.2,0.55),vec3(.8,.85,.9),0.0), clamp( -(den*40.+0.)*pos.y*.02, 0., 1. ) );
+				        col.rgb += clamp((1.-den*6.) + pos.y*0.13 +.55, 0., 1.)*0.35*mix(bgc,vec3(1),0.7); 
+			     		col += clamp(den*pos.y*.15, -.02, .0); 				
+			    	    
+			        } else if (Scene == 3.0) {
+			        	col = vec4(mix( vec3(.7,.5,.5), vec3(.0), den ),den)*0.7;
+				        col.xyz *= mix(bgc*bgc*2.5,  mix(vec3(0.1,0.2,0.4),vec3(0.),0.), clamp( -(den*40.+0.)*pos.y*.03, 0., 1. ) );
+				        col.rgb += clamp((1.-den*6.) + pos.y*0.13 +.55, 0., 1.)*0.35*mix(bgc,vec3(1),0.7); 
+				        col += clamp(den*pos.y*.15, -.01, 1.); 
+			        } else {
+				        col = vec4(0.6, 0.5, 0.3, den)*1.4;
+				        col.xyz *= mix(bgc*bgc*2.5,  mix(vec3(0.1,0.25,0.55),vec3(.8,.85,.9),0.0), clamp( -(den*40.+0.)*pos.y*.02, 0., 1. ) );
+				        col.rgb += clamp((1.-den) + pos.y*0.13 +.55, 0., 1.)*0.5*mix(bgc,vec3(1),0.7); 
+				       // col += clamp(den*pos.y*.15, -.02, .0); //Depth occlusion
+				        col *= smoothstep(0.6,.0,mapV(pos+1.*lgt))*.95+0.25; //Shadows	
+			        }
+
+			        col *= (albedo+0.5); //simulate how much light the cloud reflects
+			        col *= smoothstep(0.3,.0,mapV(pos+1.*lgt))*.85+0.15; 	//Shadows
+					if (Scene == 2.0 || Scene == 3.0) {
+				        col.a *= .75;
+				    }
+			        col.rgb *= col.a;
+			        rz = rz + col*(1.0 - rz.a); 		//basically accumulate colors
+			        t += max(.5,(2.-den*30.)*t*0.011);
+			    }
+
+			    return clamp(rz, 0., 1.);
+			}
+			//---------------------------------------------------------------------
+			// control rotation
+			mat3 rot_x(float a){float sa = sin(a); float ca = cos(a); return mat3(1.,.0,.0,    .0,ca,sa,   .0,-sa,ca);}
+			mat3 rot_y(float a){float sa = sin(a); float ca = cos(a); return mat3(ca,.0,sa,    .0,1.,.0,   -sa,.0,ca);}
+			mat3 rot_z(float a){float sa = sin(a); float ca = cos(a); return mat3(ca,sa,.0,    -sa,ca,.0,  .0,.0,1.);}
+
+			void main() {
+			    vec2 q = -1.0 + 2.0 *vUv;
+			    vec2 p  = q - 0.5;
+			    float asp = 1.6;			//ratio of horizontal to vertical
+			    p.x *= asp;
+			    vec3 ro = vec3(0.,-4., 30.);
+			    vec3 fw = vec3(0.,0., 1.);
+			    vec3 uu = normalize(cross( vec3(0.0,1.0,0.0), fw ));
+			    vec3 vv = normalize(cross(fw,uu));
+				float zoom = zoom_factor;				// Initial zoom factor
+			    vec3 rd = normalize( p.x*uu + p.y*vv + -zoom*fw );
+				
+				//take uniforms and perform rotation
+				float rox = 3.1*rotate_x/180.0;
+				float roy = 3.1*rotate_y/180.0;
+				float roz = 3.1*rotate_z/180.0;
+   				mat3 rotation = rot_x(-rox)*rot_y(-roy + 2.5)*rot_z(roz);
+
+				rd *= rotation;
+			  
+			    vec3 col = vec3(0.);
+			    lgt = normalize(vec3(-0.3-Light_Horiz,0.1+Light_Vertical,1.));  
+			   	float rdl = clamp(dot(rd, lgt),0.,1.);
+			    // vec3 hor = mix( vec3(.5,.5,.7)*0.35, vec3(.5,0.05,0.05), rdl );
+			    //hor = mix(hor, vec3(.5,.8,1),mo.y);
+				
+				//------------------------------------------------------------------------------------
+				// change SUN size and color
+			   
+			    //sun and general lighting, in->out
+			    if (Scene == 2.0) {//morning  	
+			    	col += mix( vec3(.1,.2,.6), vec3(1.0), exp2(-(1.+ 3.*(0.6))*max(abs(rd.y),0.)) )*.6;  
+				    col += .8*vec3(1.,.9,.9)*exp2(500.*(rdl-1.));
+				    col += .3*vec3(1.,1.,.1)*exp2(rdl*100.-100.);
+				    col += .5*vec3(1.,.7,0.)*exp2(rdl*50.-50.);
+				    col += .4*vec3(1.,0.,0.05)*exp2(rdl*10.-10.);  
+				} else if (Scene == 3.0) { //night time
+					col += 1.5*vec3(.8,.8,.8)*exp2(rdl*1000.-1000.); //the sun
+				    col += .2*vec3(1.,1.,1.)*exp2(rdl*50.-50.);
+				    col += .2*vec3(.5,.5,.5)*exp2(rdl*20.-20.);
+				} else if (Scene == 1.0) { //midday
+					vec3 hor = vec3(.1,0.3,1.3)*1.2;
+				    col += mix( vec3(.0,.1,1.5), hor, exp2(-(1.+ 2.*(1.-rdl))*max(abs(rd.y),0.)) )*.35;
+				    col += 1.5*vec3(.3,.3,.3)*exp2(rdl*500.-500.);
+				    col += 1.2*vec3(0.4,.3,0.0)*exp2(rdl*10.-10.);
+				    col += .5*vec3(0.4,.5,0.0)*exp2(rdl*1.-1.);
+				    col += .3*vec3(0.,0.,0.5)*exp2(rdl*1.-1.);  
+				}
+				
+			    vec3 bgc = col;
+			    float rz = march(ro,rd);
+			    
+			    if (rz < 100.) {   
+			        vec4 res = marchV(ro, rd, rz-5., bgc);
+			        col = col*(1.0-res.w) + res.xyz;
+			    }  
+		
+			//	if (Scene == 3.0) col = clamp(col, 0.0, 0.7);
+			//	else if (Scene == 2.0) 
+				col = clamp(col, 0.0, 1.0);
+			//	else col = clamp(col, 0.0, 0.6);
+				
+			    col = col*0.5 + 0.5*col*col*(3.0-2.0*col); 
+			    col = pow(col, vec3(0.5))*1.0 - 0.05; 
+		
+			    gl_FragColor = vec4( col, 1. );
+			//   gl_FragColor = vec4(.5);
+			}
+        </script>
+
+		<script>
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );	
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+			
+			var myUniforms = {
+					Rotate_X:    { type: 'f', value: 0.0 },
+					Rotate_Y:    { type: 'f', value: 0.0 },
+					Rotate_Z:    { type: 'f', value: 0.0 },
+					zoom_factor: { type: 'f', value: 1.0 },
+					amplitude: {type: 'f', value: 0.35},
+					Light_Vertical: {type: 'f', value: 0.0},
+					Light_Horiz: {type: 'f', value: 0.0},
+					albedo: {type: 'f', value: .5},
+					Scene:	 { type: 'f', value: 1.0 },	
+		    };
+			
+			var myCanvas = new THREE.PlaneGeometry(70, 39, 1, 1);
+			var meshMaterial = new THREE.ShaderMaterial({
+				uniforms: myUniforms,
+		        vertexShader: document.getElementById('vs').textContent,
+		        fragmentShader: document.getElementById('fs').textContent,
+		      //  side: THREE.DoubleSide
+		    });
+			var myMesh = new THREE.Mesh(myCanvas, meshMaterial);   
+	
+			scene.add(myMesh);
+			camera.position.z = 25;
+			//---------------------------------------------------------
+			var render = function () {
+				requestAnimationFrame( render );
+				myUniforms.Rotate_X.value = get_Rotate_X();
+				myUniforms.Rotate_Y.value = get_Rotate_Y();
+				myUniforms.Rotate_Z.value = get_Rotate_Z();
+				myUniforms.Light_Vertical.value = get_lightVert();
+				myUniforms.Light_Horiz.value = get_lightHoriz();
+				myUniforms.Scene.value = get_Scene();
+				myUniforms.albedo.value = get_Albedo();
+				myUniforms.amplitude.value = get_Hardness();
+				myUniforms.zoom_factor.value = get_zoom_factor();
+				renderer.render(scene, camera);
+			};
+			render();
+		</script>
+	</body>
+</html>

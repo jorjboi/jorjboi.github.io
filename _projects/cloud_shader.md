@@ -10,6 +10,8 @@ related_publications: false
 
 Inspired by scenes in films such as Up, I wanted to render a scene with believable and aesthetically compelling clouds. Using Three.js, a JavaScript API for WebGL based graphics, I created a fragment shader that creates clouds through volumetric ray marching. I also added a UI that lets the user control the scene's appearance.
 
+Try the [demo here](assets/demo/clouds/clouds.html).
+
 - [Implementation](#implementation)
 - [UI Controls](#ui-controls)
 - [Results](#results)
