@@ -124,7 +124,7 @@ Here is the cloth lying on a plane:
 
 ## Self-Collisions
 
-To prevent the cloth from folding over and intersecting with itself, we also need to handle self-collisions. The naive \\(O(n^2))\\ way of doing this would be to check if every mass is about to collide with every other mass in the grid at every time step, but this is too inefficient for 
+To prevent the cloth from folding over and intersecting with itself, we also need to handle self-collisions. The naive \\(O(n^2)\\) way of doing this would be to check if every mass is about to collide with every other mass in the grid at every time step, but this is too inefficient for 
 real-time simulations.
 
 Instead, I implement spatial hashing. I subdivide the entire space into the scene into equally sized 3D boxes, map each box to a unique float, and then build a hash table from each float to a list of point masses located in the box. Then, at every time step, I only need to build the hash table and iterate through the point masses. For each point mass, I use the hash table to find a list of neighboring point masses in the same 3D volume and check for collisions between each point mass and its neighbors.
