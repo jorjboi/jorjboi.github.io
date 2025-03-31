@@ -31,7 +31,7 @@ nav_order: 3
 
   .art-item img {
     height: auto;
-    max-height: 600px; /* Ensures uniform height */
+    /*max-height: 600px; /* Ensures uniform height */
     width: 100%; /* Ensures full width within the container */
     object-fit: contain; /* Maintain aspect ratio without distorting image */
     margin-bottom: 10px;
