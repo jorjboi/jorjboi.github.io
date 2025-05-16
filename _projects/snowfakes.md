@@ -41,7 +41,20 @@ Diffusive mass represents water vapor in the air, and boundary mass reprsents th
 
 The algorithm is as follows:
 
-1. **Structural constraints** exist between a mass `[i, j]` and masses `[i + 1, j]` and `[i, j + 1]`. They help define the topology of the cloth and simulate “stretching” stresses on the cloth.
+1. **Diffusion Calculation** 
+Calculate the horizontal diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and the center:
+
+$$
+d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y)
+$$
+
+Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors:
+
+$$
+d''_t(x) = \frac{8}{14} d'_t(x) + \frac{3}{14} \sum_{\substack{y \in N^Z_x \\ y \ne x}} d'_t(y)
+$$
+
+
 2. **Shearing constraints** exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
 3. **Bending constraints** exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
 
