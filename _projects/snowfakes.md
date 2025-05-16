@@ -48,11 +48,19 @@ $$
 d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y)
 $$
 
-Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors:
+Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors: 
 
 $$
 d''_t(x) = \frac{8}{14} d'_t(x) + \frac{3}{14} \sum_{\substack{y \in N^Z_x \\ y \ne x}} d'_t(y)
 $$
+
+The final diffusion step accounts for drift in the vertical direction, which happens if a snowflake is falling downwards:
+
+$$
+d'''_t(x) = (1 - \varphi (1 - a_t(x - e_3))) \cdot d''_t(x) + \varphi (1 - a_t(x + e_3)) \cdot d''_t(x + e_3)
+$$
+
+Here $$\varphi$$ is the drift strength. I set $$\varphi = 0 $$ in my simulations for symmetrical crystal growth.
 
 
 2. **Shearing constraints** exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
