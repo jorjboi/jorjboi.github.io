@@ -60,11 +60,29 @@ $$
 d'''_t(x) = (1 - \varphi (1 - a_t(x - e_3))) \cdot d''_t(x) + \varphi (1 - a_t(x + e_3)) \cdot d''_t(x + e_3)
 $$
 
-Here $$\varphi$$ is the drift strength. I set $$\varphi = 0 $$ in my simulations for symmetrical crystal growth.
+2.**Freezing** 
+Counting the horizontal and vertical neighbors:
+
+$$
+n^T_t(x) = \min \left( 3, \#\{ y \in N^T_x \mid a_t(y) = 1 \} \right)
+$$
+$$
+n^Z_t(x) = \min \left( 1, \#\{ y \in N^Z_x \mid a_t(y) = 1 \} \right)
+$$
+
+We use those to calculate the boundary mass and diffusion mass:
+
+$$
+b'_t(x) = b^\circ_t(x) + (1 - \kappa(n^T_t(x), n^Z_t(x))) \cdot d^\circ_t(x)
+$$
+$$
+d'_t(x) = \kappa(n^T_t(x), n^Z_t(x)) \cdot d^\circ_t(x)
+$$
+
+If the boundary mass is greater than 
 
 
-2. **Shearing constraints** exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
-3. **Bending constraints** exist between a mass `[i, j]` and masses `[i + 2, j]` and `[i, j + 2]`. They simulate smooth “bending” on the cloth and prevent the grid from folding perfectly onto itself like an infinitely thin sheet of paper.
+3. **Metling** exist between a mass `[i, j]` and masses `[i - 1, j - 1]` and `[i - 1, j + 1]`. They help prevent excessive shearing deformation and prevent the grid from collapsing entirely onto one side. 
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-4 mt-3 mt-md-0">
