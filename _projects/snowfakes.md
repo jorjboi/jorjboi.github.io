@@ -20,7 +20,6 @@ related_publications: false
 - [Houdini Modeling](#houdini-modeling)
 - [Simulation Results](#simulation-results)
 
-
 ## Overview
 
 In Houdini, I implemented a physically-based model to simulate the formuation of snowflakes, following the paper ["Modeling Snow Crystal Growth III: Three-Dimensional Snowfakes"](https://www.math.ucdavis.edu/~gravner/papers/h3l.pdf) by Janko Gravner and David Griffeath. The model works on a mesoscopic scale, or approximately the micron level. This works well for capturing the overall growth patterns and behavior of ice crystals (without getting bogged down with tracking every water molecule).
@@ -41,7 +40,7 @@ Diffusive mass represents water vapor in the air, and boundary mass reprsents th
 
 The algorithm is as follows:
 
-1. **Diffusion Calculation**   
+### 1. Diffusion Calculation 
 Calculate the horizontal diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and the center:
 
 $$ d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y) $$
@@ -56,7 +55,7 @@ $$ d'''_t(x) = (1 - \varphi (1 - a_t(x - e_3))) \cdot d''_t(x) + \varphi (1 - a_
 
 I use $$\varphi = 0$$ for my simulations for simplicty and to ensure symmetrical results.
 
-2. **Freezing**   
+### 2. Freezing   
 Counting the horizontal and vertical neighbors:
 
 $$ n^T_t(x) = \min \left( 3, \#\{ y \in N^T_x \mid a_t(y) = 1 \} \right) $$
@@ -72,7 +71,7 @@ If the boundary mass is greater than that of its neighbors, it freezes and we ca
 $$\text{If} b^\circ_t(x) \geq \beta(n^T_t(x), n^Z_t(x))$$, then cell $$x$$ attaches.
 
 
-3. **Metling**   
+### 3. Metling  
 When melting, part of the boundary mass becomes diffusive mass. 
 
 $$ b'_t(x) = (1 - \mu(n^T_t(x), n^Z_t(x))) \cdot b^\circ_t(x) $$
