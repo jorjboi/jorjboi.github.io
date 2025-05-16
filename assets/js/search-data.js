@@ -448,6 +448,11 @@ ninja.data = [{
           description: "Implemented the core routines of a physically-based renderer using the pathtracing algorithm.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/pathtracer/";
+            },},{id: "projects-snowflake-modeling",
+          title: 'Snowflake Modeling',
+          description: "3D physically-based snowflake simulation at the mesoscopic scale, implemented in Houdini using VEX.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/snowfakes/";
             },},{
         id: 'social-email',
         title: 'email',
