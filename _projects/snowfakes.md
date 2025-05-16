@@ -27,7 +27,7 @@ In Houdini, I implemented a physically-based model to simulate the formuation of
 
 They focus on three key factors for snowflake growth: water vapor diffusion, anisotropic attachment of water molecules, and a semi-liquid boudnary layer on the surface of the ice crystal. By adjusting parameters related to these factors, this model can produce a wide variety of realistic snowflake features including branched dendrites and ridged plates.
 
-## Model
+## Algorithm
 
 Our model assumes the basic building cell of an ice crystal is a hexagonal prism, with a height of `1` and a hexagonal base length of `1/√3`. At each site that an ice crystal can attach to $$x$$ and time step $$t$$, we keep track of two quantities: the boundary mass $$b_t(x)$$ and diffusion mass $$d_t(x)$$.
 
