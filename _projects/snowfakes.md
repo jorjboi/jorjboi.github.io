@@ -56,7 +56,7 @@ $$ d'''_t(x) = (1 - \varphi (1 - a_t(x - e_3))) \cdot d''_t(x) + \varphi (1 - a_
 
 I use $$\varphi = 0$$ for my simulations for simplicty and to ensure symmetrical results.
 
-2.**Freezing** 
+2. **Freezing** 
 Counting the horizontal and vertical neighbors:
 
 $$ n^T_t(x) = \min \left( 3, \#\{ y \in N^T_x \mid a_t(y) = 1 \} \right) $$
