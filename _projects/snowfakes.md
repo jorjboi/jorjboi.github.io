@@ -41,43 +41,43 @@ Diffusive mass represents water vapor in the air, and boundary mass reprsents th
 The algorithm is as follows:
 
 #### 1. Diffusion Calculation 
-Calculate the horizontal diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and the center:
+Calculate the diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and 2 vertical ones. Note that the final diffusion calculation accounts for vertical drift, which happens if a snowflake is falling downwards. However, I skip this step for my simulations for simplicty and to ensure symmetrical results.
+ 
+<!-- $$ d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y) $$ -->
+<!-- Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors:  -->
+<!-- $$ d''_t(x) = \frac{8}{14} d'_t(x) + \frac{3}{14} \sum_{\substack{y \in N^Z_x \\ y \ne x}} d'_t(y)$$ -->
 
-$$ d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y) $$
+<!-- The final diffusion step accounts for drift in the vertical direction, which happens if a snowflake is falling downwards: -->
 
-Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors: 
+<!-- $$ d'''_t(x) = (1 - \varphi (1 - a_t(x - e_3))) \cdot d''_t(x) + \varphi (1 - a_t(x + e_3)) \cdot d''_t(x + e_3) $$ -->
 
-$$ d''_t(x) = \frac{8}{14} d'_t(x) + \frac{3}{14} \sum_{\substack{y \in N^Z_x \\ y \ne x}} d'_t(y)$$
-
-The final diffusion step accounts for drift in the vertical direction, which happens if a snowflake is falling downwards:
-
-$$ d'''_t(x) = (1 - \varphi (1 - a_t(x - e_3))) \cdot d''_t(x) + \varphi (1 - a_t(x + e_3)) \cdot d''_t(x + e_3) $$
-
-I use $$\varphi = 0$$ for my simulations for simplicty and to ensure symmetrical results.
+<!-- I use $$\varphi = 0$$ for my simulations for simplicty and to ensure symmetrical results. -->
 
 #### 2. Freezing   
-Counting the horizontal and vertical neighbors:
+Using the horizontal and vertical neighbors, we can calculate the boundary mass at each time step. If the boundary mass is greater than that of its neighbors, it freezes and we can attach the cell to the ice crystal. 
 
+Additionally, we can attach a cell to the crystal if all its horizontal and vertical neighbors are attached, in order to avoid holes and make the surface of the crystal smoother.
+<!-- 
 $$ n^T_t(x) = \min ( 3, \#\{ y \in N^T_x \mid a_t(y) = 1 \} ) $$
-$$ n^Z_t(x) = \min ( 1, \#\{ y \in N^Z_x \mid a_t(y) = 1 \} ) $$
+$$ n^Z_t(x) = \min ( 1, \#\{ y \in N^Z_x \mid a_t(y) = 1 \} ) $$ -->
 
-We use those to calculate the boundary mass and diffusion mass:
+<!-- We use those to calculate the boundary mass and diffusion mass: -->
 
-$$ b'_t(x) = b^\circ_t(x) + (1 - \kappa(n^T_t(x), n^Z_t(x))) \cdot d^\circ_t(x) $$
-$$ d'_t(x) = \kappa(n^T_t(x), n^Z_t(x)) \cdot d^\circ_t(x) $$
-
+<!-- $$ b'_t(x) = b^\circ_t(x) + (1 - \kappa(n^T_t(x), n^Z_t(x))) \cdot d^\circ_t(x) $$
+$$ d'_t(x) = \kappa(n^T_t(x), n^Z_t(x)) \cdot d^\circ_t(x) $$ -->
+<!-- 
 If the boundary mass is greater than that of its neighbors, it freezes and we can attach the cell to the ice crystal:
 
-$$ \text{If} b^\circ_t(x) \geq \beta(n^T_t(x), n^Z_t(x)) $$, then cell $$x$$ attaches.
+$$ \text{If} b^\circ_t(x) \geq \beta(n^T_t(x), n^Z_t(x)) $$, then cell $$x$$ attaches. -->
 
 
 #### 3. Metling  
 When melting, part of the boundary mass becomes diffusive mass. 
 
-$$ b'_t(x) = (1 - \mu(n^T_t(x), n^Z_t(x))) \cdot b^\circ_t(x) 
+<!-- $$ b'_t(x) = (1 - \mu(n^T_t(x), n^Z_t(x))) \cdot b^\circ_t(x) 
 $$
 $$ d'_t(x) = d^\circ_t(x) + \mu(n^T_t(x), n^Z_t(x)) \cdot b^\circ_t(x) 
-$$
+$$ -->
 
 
 ## Houdini Modeling
