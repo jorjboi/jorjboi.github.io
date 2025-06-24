@@ -2,8 +2,8 @@
 layout: page
 title: Snowflake Modeling
 description: 3D physically-based snowflake simulation at the mesoscopic scale, implemented in Houdini using VEX.
-img: assets/img/clothsim_sphere.gif
-importance: 3
+img: assets/img/snowflake_cover".g"if
+importance: 2
 category: work
 related_publications: false
 ---
@@ -22,9 +22,11 @@ related_publications: false
 
 ## Overview
 
-In Houdini, I implemented a physically-based model to simulate the formuation of snowflakes, following the paper ["Modeling Snow Crystal Growth III: Three-Dimensional Snowfakes"](https://www.math.ucdavis.edu/~gravner/papers/h3l.pdf) by Janko Gravner and David Griffeath. The model works on a mesoscopic scale, or approximately the micron level. This works well for capturing the overall growth patterns and behavior of ice crystals (without getting bogged down with tracking every water molecule).
+In Houdini, I implemented a physically-based model to simulate the formuation of snowflakes, following the paper ["Modeling Snow Crystal Growth III: Three-Dimensional Snowfakes"](https://www.math.ucdavis.edu/~gravner/papers/h3l.pdf) by Janko Gravner and David Griffeath. The model works on a mesoscopic scale, or approximately the micron level. This works well for capturing the overall growth patterns of ice crystals without getting bogged down with tracking every water molecule.
 
-They focus on three key factors for snowflake growth: water vapor diffusion, anisotropic attachment of water molecules, and a semi-liquid boudnary layer on the surface of the ice crystal. By adjusting parameters related to these factors, this model can produce a wide variety of realistic snowflake features including branched dendrites and ridged plates.
+They focus on three key factors for snowflake growth: water vapor diffusion, anisotropic attachment of water molecules, and a semi-liquid boudnary layer on the surface of the ice crystal. By adjusting these parameters, this model can produce a wide variety of realistic snowflakes.
+
+The algorithm below was implemented in a SOP solver using VEX.
 
 ## Algorithm
 
@@ -41,7 +43,7 @@ Diffusive mass represents water vapor in the air, and boundary mass reprsents th
 The algorithm is as follows:
 
 #### 1. Diffusion Calculation 
-Calculate the diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and 2 vertical ones. Note that the final diffusion calculation accounts for vertical drift, which happens if a snowflake is falling downwards. However, I skip this step for my simulations for simplicty and to ensure symmetrical results.
+Calculate the diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and 2 vertical ones. Note that the final diffusion calculation accounts for vertical drift, which can happen when a snowflake is falling downwards. However, I skip this for my simulations for simplicty and to ensure symmetrical results.
  
 <!-- $$ d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y) $$ -->
 <!-- Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors:  -->
@@ -54,7 +56,7 @@ Calculate the diffusion by averaging the vapor diffusion mass among each cell's 
 <!-- I use $$\varphi = 0$$ for my simulations for simplicty and to ensure symmetrical results. -->
 
 #### 2. Freezing   
-Using the horizontal and vertical neighbors, we can calculate the boundary mass at each time step. If the boundary mass is greater than that of its neighbors, it freezes and we can attach the cell to the ice crystal. 
+Using the horizontal and vertical neighbors, calculate the boundary mass at each time step. If the boundary mass of a cell is greater than that of its neighbors, it freezes and we can attach the cell to the ice crystal. 
 
 Additionally, we can attach a cell to the crystal if all its horizontal and vertical neighbors are attached, in order to avoid holes and make the surface of the crystal smoother.
 <!-- 
@@ -93,19 +95,20 @@ The initial state is a prism of hexagonal cells in a finite lattice:
     Starting grid with snowflake seed in center
 </div>
 
-Cells belong to one of three groups: `snowflake` (part of the crystal), `boundary` (at the semi-liquid surface layer), or `vapor` (diffuse). With each iteration, the solver calculates the diffusion, freezing, and melting steps in VEX and applies updates to each cell.
+Cells belong to one of three groups: `snowflake` (part of the crystal), `boundary` (at the semi-liquid surface layer), or `vapor` (diffuse). A SOP solver tracks the state of each cell and calculates the diffusion, freezing, and melting steps in VEX and applies updates at each iteration.
 
-<div class="row justify-content-center">
-    <div class="col-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/snowfakes/solver.png" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Houdini solver
-</div>
 
 ## Simulation Results
 
-Using parameters from the paper, simulation results are shown below.
+Using parameters provided by the paper, I was able to generate the following result!
 
+<div class="row justify-content-center">
+    <div class="col-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/snowfakes/snowflake_sim.gif" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Snowflake simulation results
+</div>
 
+Notice the realistic snowflake features such as the branched dendrites and ridged plates. This model was a more physics-based approach to snowflake simulation versus a more art-directable one, so while it may not be very useful for a film's snow VFX, it was a fun way for me to learn about VEX and solvers in Houdini.
