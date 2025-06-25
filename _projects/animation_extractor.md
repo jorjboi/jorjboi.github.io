@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Animation 
-description: Scale growth visual effect created in Houdini wit VEX.
+title: Alembic Animation Extractor
+description: Houdini HDA to detect rigid bodies from an alembic file
 img: assets/img/render_scales_cover.gif"
 importance: 1
 category: work
