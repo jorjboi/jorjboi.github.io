@@ -413,6 +413,11 @@ ninja.data = [{
           description: "A GLSL shader to create clouds and simulate different lighting scenarios.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-alembic-animation-extractor",
+          title: 'Alembic Animation Extractor',
+          description: "Houdini HDA to detect rigid bodies from an alembic file",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/animation_extractor/";
             },},{id: "projects-cloth-simulation",
           title: 'Cloth Simulation',
           description: "Cloth simulation using a point mass-spring system, along with various GLSL shaders.",
@@ -448,11 +453,6 @@ ninja.data = [{
           description: "Implemented the core routines of a physically-based renderer using the pathtracing algorithm.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/pathtracer/";
-            },},{id: "projects-animation",
-          title: 'Animation',
-          description: "Scale growth visual effect created in Houdini wit VEX.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/scale_growth-copy/";
             },},{id: "projects-scale-growth",
           title: 'Scale Growth',
           description: "Scale growth visual effect created in Houdini wit VEX.",
