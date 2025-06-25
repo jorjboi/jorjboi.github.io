@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Snowflake Modeling
+title: Scale Growth
 description: 3D physically-based snowflake simulation at the mesoscopic scale, implemented in Houdini using VEX.
-img: assets/img/snowflake_cover.gif"
-importance: 2
+img: assets/img/snowflake_cover".g"if
+importance: 1
 category: work
 related_publications: false
 ---
