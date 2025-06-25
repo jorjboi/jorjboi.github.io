@@ -413,8 +413,8 @@ ninja.data = [{
           description: "A GLSL shader to create clouds and simulate different lighting scenarios.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
-            },},{id: "projects-alembic-animation-extractor",
-          title: 'Alembic Animation Extractor',
+            },},{id: "projects-animation-extractor",
+          title: 'Animation Extractor',
           description: "Houdini HDA to detect rigid objects from an alembic file and extract the animation into the object level.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/animation_extractor/";
