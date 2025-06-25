@@ -3,7 +3,7 @@ layout: page
 title: Snowflake Modeling
 description: 3D physically-based snowflake simulation at the mesoscopic scale, implemented in Houdini using VEX.
 img: assets/img/snowflake_cover.gif"
-importance: 2
+importance: 1
 category: work
 related_publications: false
 ---
