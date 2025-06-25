@@ -450,7 +450,7 @@ ninja.data = [{
               window.location.href = "/projects/pathtracer/";
             },},{id: "projects-scale-growth",
           title: 'Scale Growth',
-          description: "3D physically-based snowflake simulation at the mesoscopic scale, implemented in Houdini using VEX.",
+          description: "Scale growth visual effect created in Houdini wit VEX.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/scale_growth/";
             },},{id: "projects-snowflake-modeling",
