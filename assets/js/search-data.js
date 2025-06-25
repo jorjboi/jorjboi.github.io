@@ -415,7 +415,7 @@ ninja.data = [{
               window.location.href = "/projects/9_project/";
             },},{id: "projects-alembic-animation-extractor",
           title: 'Alembic Animation Extractor',
-          description: "Houdini HDA to detect rigid bodies from an alembic file",
+          description: "Houdini HDA to detect rigid objects from an alembic file and extract the animation into the object level.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/animation_extractor/";
             },},{id: "projects-cloth-simulation",
@@ -455,7 +455,7 @@ ninja.data = [{
               window.location.href = "/projects/pathtracer/";
             },},{id: "projects-scale-growth",
           title: 'Scale Growth',
-          description: "Scale growth visual effect created in Houdini wit VEX.",
+          description: "Scale growth visual effect created in Houdini with VEX.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/scale_growth/";
             },},{id: "projects-snowflake-modeling",
