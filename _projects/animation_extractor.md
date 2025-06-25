@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Alembic Animation Extractor
+title: Animation Extractor
 description: Houdini HDA to detect rigid objects from an alembic file and extract the animation into the object level.
 img: assets/img/render_scales_cover.gif
 importance: 1
