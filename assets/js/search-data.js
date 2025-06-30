@@ -415,7 +415,7 @@ ninja.data = [{
               window.location.href = "/projects/9_project/";
             },},{id: "projects-animation-extractor",
           title: 'Animation Extractor',
-          description: "Houdini HDA to detect rigid objects from an alembic file and extract the animation into the object level.",
+          description: "Houdini HDA to detect rigid objects from an Alembic file and extract the animation into the object level.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/animation_extractor/";
             },},{id: "projects-cloth-simulation",
