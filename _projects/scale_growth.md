@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Scale Growth
-description: Scale growth visual effect created in Houdini with VEX.
+description: Scale growth visual effect created in Houdini using VOPs.
 img: assets/img/render_scales_cover.gif
 importance: 2
 category: work
