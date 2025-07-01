@@ -30,7 +30,7 @@ The algorithm below was implemented in a SOP solver using VEX.
 
 ## Algorithm
 
-Our model assumes the basic building cell of an ice crystal is a hexagonal prism, with a height of `1` and a hexagonal base length of `1/√3`. At each site that an ice crystal can attach to $$x$$ and time step $$t$$, we keep track of two quantities: the boundary mass $$b_t(x)$$ and diffusion mass $$d_t(x)$$.
+The paper's model assumes the basic building cell of an ice crystal is a hexagonal prism, with a height of `1` and a hexagonal base length of `1/√3`. At each site that an ice crystal can attach to $$x$$ and time step $$t$$, we keep track of two quantities: the boundary mass $$b_t(x)$$ and diffusion mass $$d_t(x)$$.
 
 Diffusive mass represents water vapor in the air, and boundary mass reprsents the thin semi-liquid layer at the snowflake's surface that vapor can condense into before freezing into solid ice. Together, they determine whether a cell will attach to the snow crystal (freezing).
 
