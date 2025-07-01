@@ -43,7 +43,8 @@ Diffusive mass represents water vapor in the air, and boundary mass reprsents th
 The algorithm is as follows:
 
 #### 1. Diffusion Calculation 
-Calculate the diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and 2 vertical ones. Note that the final diffusion calculation accounts for vertical drift, which can happen when a snowflake is falling downwards. However, I skip this for my simulations for simplicty and to ensure symmetrical results.
+Calculate the diffusion by averaging the vapor diffusion mass among each cell's 6 horizontal neighbors and 2 vertical ones.
+ <!-- Note that the final diffusion calculation accounts for vertical drift, which can happen when a snowflake is falling downwards. However, I skip this for my simulations for simplicty and to ensure symmetrical results. -->
  
 <!-- $$ d'_t(x) = \frac{1}{7} \sum_{y \in N^T_x} d^\circ_t(y) $$ -->
 <!-- Calculate the vertical diffusion, give a slight anisotropic weight to vertical neighbors:  -->
@@ -56,7 +57,7 @@ Calculate the diffusion by averaging the vapor diffusion mass among each cell's 
 <!-- I use $$\varphi = 0$$ for my simulations for simplicty and to ensure symmetrical results. -->
 
 #### 2. Freezing   
-Using the horizontal and vertical neighbors, calculate the boundary mass at each time step. If the boundary mass of a cell is greater than that of its neighbors, it freezes and we can attach the cell to the ice crystal. 
+Using the horizontal and vertical neighbors, calculate the boundary mass at each time step. If the boundary mass of a cell is greater than that of its neighbors, it freezes and we can attach the cell to the ice crystal.
 
 Additionally, we can attach a cell to the crystal if all its horizontal and vertical neighbors are attached, in order to avoid holes and make the surface of the crystal smoother.
 <!-- 
