@@ -23,7 +23,7 @@ I've always been fascinated with how technical artists create art-directable fur
 
 I’m very excited about how it came out, and I’m hoping to try rendering these results soon.
 
-div class="row">
+<div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/werewolf_groom/werewolf_fur_sim.gif" title="IK-FK interpolation" class="img-fluid rounded z-depth-1" %}
     </div>
