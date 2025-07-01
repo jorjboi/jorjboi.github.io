@@ -455,7 +455,7 @@ ninja.data = [{
               window.location.href = "/projects/pathtracer/";
             },},{id: "projects-scale-growth",
           title: 'Scale Growth',
-          description: "Scale growth visual effect created in Houdini with VEX.",
+          description: "Scale growth visual effect created in Houdini using VOPs.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/scale_growth/";
             },},{id: "projects-snowflake-simulation",
