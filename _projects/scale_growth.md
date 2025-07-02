@@ -27,7 +27,7 @@ I first use the distance attribute with added noise to drive the growth effect. 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/scale_growth/scale_growth.gif" title="raycasting" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/scale_growth/growth_map.gif" title="raycasting" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
