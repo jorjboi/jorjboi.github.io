@@ -16,6 +16,19 @@ related_publications: false
 **Under construction!**
 
 - [Overview](#overview)
-- [Simulation Results](#simulation-results)
+- [Process](#process)
 
 ## Overview
+To become familiar with working with VOPs in Houdini, I created a scale growth effect. I can see the benefits of VOPs over scripting in VEX, especially when effects require some nosie and an art-directable organic quality.
+
+I first use the distance attribute with added noise to drive the growth effect. The growth factor is used to control the `pscale` of the scales over time, causing them to appear. To give the growth a more organic quality, I also add noise to the normals and a spring effect to give it some jiggle.
+
+## Process
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/scale_growth/scale_growth.gif" title="raycasting" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+
