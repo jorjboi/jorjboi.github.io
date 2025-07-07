@@ -27,3 +27,19 @@ An Alembic file is efficient for storing detailed 3D animation as baked geometri
 Using an Alembic file in collision-simulations becomes very slow and computationally expensive. This project identifies pieces of geometry with the same transformation (translation + rotation) in an Alembic file and extracts that transformation to the object-level. Instead of dealing with a full complex deforming mesh, we have rigid bodies with simple transformations instead. This is much more efficient for collisions in DOPs (Houdini's engine for simulating rigid body interactions).
 
 ## Rigid Body Detection
+In the first step, I create a Houdini digital asset to procedurally divide an Alembic file into parts based on the transformations of the geometry. I do this by extracting the `packedfulltransform` matrix of each primitive, turning the orientation into a quaternion, and counting how many different orientations there are.
+
+I then assign a unique integer ID to groups which share the same quaternion orientation by generating a random int from the group orientation, and then normalizing the IDs in a loop.
+
+For instance, in this helicopter animation, the three components with distinct transformations are the main body, the main rotor, and the rear rotor.
+
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="../assets/img/animation_extractor/heli.png" title="Helicopter components" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Helicopter parts
+</div>
+
