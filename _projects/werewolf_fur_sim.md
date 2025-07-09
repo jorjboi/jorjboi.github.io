@@ -13,7 +13,7 @@ related_publications: false
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-**Under construction!**
+<!-- **Under construction!** -->
 
 - [Overview](#overview)
 - [Process](#process)
@@ -23,6 +23,8 @@ I've always been fascinated with how technical artists create art-directable fur
 
 I’m very excited about how it came out, and I’m hoping to try rendering these results soon.
 
+
+## Process
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/werewolf_groom/werewolf_fur_sim.gif" title="Groom Process" class="img-fluid rounded z-depth-1" %}
@@ -31,5 +33,3 @@ I’m very excited about how it came out, and I’m hoping to try rendering thes
 <div class="caption">
     Groom Process
 </div>
-
-## Process
