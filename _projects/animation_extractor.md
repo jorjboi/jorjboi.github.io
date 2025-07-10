@@ -26,7 +26,7 @@ To practice making a digital asset and using Python with Houdini, I made a HDA t
 
 An Alembic file is efficient for storing detailed 3D animation as baked geometric results. It stores pre-calculated geometry data like vertex positions, and sometimes this can include hundreds or thousands of pieces that move frame-by-frame.
 
-While this makes Alembics efficient and interchangeable across different applications, using an Alembic for collision simulations becomes very computationally expensive. This tool identifies pieces of geometry with the same transformation (translation + rotation) in an Alembic file and extracts that transformation to the object-level. Instead of dealing with a full complex deforming mesh, we have rigid bodies with simple transformations instead. This is much more efficient for collisions in DOPs, Houdini's engine for simulating rigid body interactions.
+While this makes Alembics efficient and interchangeable across different platforms, using an Alembic for collision simulations becomes very computationally expensive. This tool identifies pieces of geometry with the same transformation (translation + rotation) in an Alembic file and extracts that transformation to the object-level. Instead of dealing with a full complex deforming mesh, we have rigid bodies with simple transformations instead. This is much more efficient for collisions in DOPs, Houdini's engine for simulating rigid body interactions.
 
 The repo for this HDA is stored [here](https://github.com/jorjboi/extract_anim).
 
