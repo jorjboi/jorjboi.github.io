@@ -17,7 +17,8 @@ related_publications: false
 
 - [Overview](#overview)
 - [Rigid Body Detection](#rigid-body-detection)
-- [Simulation Results](#simulation-results)
+- [Animation Extraction](#animation-extraction)
+- [DOP Network Import](#dop-network-import)
 
 ## Overview
 To practice making a digital asset and using Python with Houdini, I made a HDA that extracts the transformations of objects in an Alembic file and turns them into efficient collision objects for simulations.
@@ -42,17 +43,16 @@ For instance, in this helicopter animation, the three components with distinct t
 </div>
 
 
-## Animation Extractor
-
-In the next step, I use create an HDA `extract_anim` to run a callback to a Python script. The Python script creates a new node which uses the HDA for rigid body detection to first object merge an Alembic, and then divide it into separate parts which share the same transformation.
+## DOP Network Import
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/animation_extractor/animation_extractor.gif" title="Animation extraction process" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/animation_extractor/dop_output.gif" title="Import into DOP" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Animation extraction process
+    Import into DOP
 </div>
+
 
 
