@@ -48,7 +48,7 @@ For instance, in this helicopter animation, the three components with distinct t
 
 ## Animation Extractor
 
-In the next step, I create an HDA `extract_anim` to run a callback to a Python script which first object merge an Alembic, and then divide it into separate parts which share the same transformation.
+In the next step, I create an HDA `extract_anim` to run a callback to a Python script which first object merges an Alembic, and then divides it into separate parts which share the same transformation.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
