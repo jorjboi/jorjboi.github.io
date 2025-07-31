@@ -30,6 +30,6 @@ Some technologies I had to become familiar with on the fly included ffmpeg, libj
     </div>
 </div>
 <div class="caption">
-    Ralphie the Havanese
+    Ralphie the Shih Tzu
 </div>
 
