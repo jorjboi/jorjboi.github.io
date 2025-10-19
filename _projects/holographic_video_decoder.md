@@ -26,7 +26,7 @@ Some technologies I had to become familiar with on the fly included ffmpeg, libj
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/decoder/ralphie_hologram.gif" title="Ralphie the Havanese" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/decoder/ralphie_hologram.gif" title="Ralphie the Shih Tzu" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
