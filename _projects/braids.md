@@ -2,7 +2,7 @@
 layout: page
 title: Braid Generator
 description: Procedural braid generator for Houdini using Lissajous curves.
-img: assets/img/snowflake_cover.gif
+img: assets/img/braids_cover.gif
 importance: 1
 category: work
 related_publications: false
