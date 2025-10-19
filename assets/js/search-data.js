@@ -418,6 +418,11 @@ ninja.data = [{
           description: "Houdini HDA to detect rigid objects from an Alembic file and extract the animation into the object level.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/animation_extractor/";
+            },},{id: "projects-braid-generator",
+          title: 'Braid Generator',
+          description: "Procedural braid generator for Houdini using Lissajous curves.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/braids/";
             },},{id: "projects-cloth-simulation",
           title: 'Cloth Simulation',
           description: "Cloth simulation using a point mass-spring system, along with various GLSL shaders.",
