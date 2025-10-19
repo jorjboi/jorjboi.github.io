@@ -3,7 +3,7 @@ layout: page
 title: Cloud Shader
 description: A GLSL shader to create clouds and simulate different lighting scenarios.
 img: assets/img/clouds_loop.gif
-importance: 3
+importance: 4
 category: work
 related_publications: false
 ---
