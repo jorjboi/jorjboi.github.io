@@ -20,7 +20,7 @@ related_publications: false
 
 This Houdini HDA procedurally generates and deforms braids along a user-defined curve. I took a lot of inspiration from Rohan Davi's braid setup to create hair geo and an initial base strand along the curve, but this tool allows for more than 3 strands in the braid and also calculates the transformations of subsequent strands (instead of requiring the user to eye-ball them into place). 
 
-The bulk of the math was taken by the Pixar paper ["Space Rangers with Corn Rows"](https://graphics.pixar.com/library/Cornrows/) by Sofya Ogunseitan and implemented in Houdini using VEX. 
+The bulk of the math was taken from the Pixar paper ["Space Rangers with Corn Rows"](https://graphics.pixar.com/library/Cornrows/) by Sofya Ogunseitan and implemented in Houdini using VEX. 
 
 ## Results
 This tool allows the user to specify the number of strands, the thickness and tightness distribution along the braid, the thickness of individual strands, and the density and frizziness of the hair.

@@ -3,7 +3,7 @@ layout: page
 title: Scale Growth
 description: Scale growth visual effect created in Houdini using VOPs.
 img: assets/img/render_scales_cover.gif
-importance: 2
+importance: 3
 category: work
 related_publications: false
 ---
