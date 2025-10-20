@@ -25,8 +25,8 @@ The bulk of the math was taken by the Pixar paper ["Space Rangers with Corn Rows
 ## Results
 This tool allows the user to specify the number of strands, the thickness and tightness distribution along the braid, the thickness of individual strands, and the density and frizziness of the hair.
 
-<div class="row justify-content-center">
-    <div class="col-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/braids/braids_demo.gif" title="Braids HDA demo" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
