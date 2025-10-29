@@ -433,6 +433,11 @@ ninja.data = [{
           description: "A GLSL shader to create clouds and simulate different lighting scenarios.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/cloud_shader/";
+            },},{id: "projects-hair-simulation",
+          title: 'Hair Simulation',
+          description: "Human hair simulation for Houdini using a Vellum solver.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/hair_sim/";
             },},{id: "projects-holographic-video-decoder",
           title: 'Holographic Video Decoder',
           description: "A decoder for streaming lightfield-video with 6 degrees of freedom.",
