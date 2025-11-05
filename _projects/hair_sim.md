@@ -41,13 +41,3 @@ Coming soon.
 <div class="caption">
     Afro hair
 </div>
-
-
-
-
-
-<!-- <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/braids/braids_demo.gif" title="Braids HDA demo" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div> -->
