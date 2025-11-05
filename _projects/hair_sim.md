@@ -9,9 +9,9 @@ related_publications: false
 ---
 
 <!-- Include MathJax -->
-<script type="text/javascript" async
+<!-- <script type="text/javascript" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+</script> -->
 
 - [Overview](#overview)
 - [Results](#results)
@@ -41,6 +41,8 @@ Coming soon.
 <div class="caption">
     Afro hair
 </div>
+
+
 
 
 
