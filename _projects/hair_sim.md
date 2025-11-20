@@ -18,6 +18,8 @@ related_publications: false
 
 ## Overview
 
+
+
 **Under construction!**
 Coming soon.
 
@@ -41,3 +43,7 @@ Coming soon.
 <div class="caption">
     Afro hair
 </div>
+
+## Resources 
+[Denis Zen's Grooming Tutorial](https://www.deniszen.com/groomingtut)
+[Andriy Bilichenko Grooming Demo](https://www.youtube.com/watch?v=4Ayo3SR3Iow) 
