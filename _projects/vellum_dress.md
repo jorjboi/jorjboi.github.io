@@ -2,7 +2,7 @@
 layout: page
 title: Vellum Dress
 description: Dress made and simulated in Houdini using Vellum tools.
-img: assets/img/dress_cover.gif
+img: assets/img/dress_cover.png
 importance: 1
 category: work
 related_publications: false
@@ -32,13 +32,13 @@ The top was built from creating planar patches from a drawn input curve. During 
 In the cloth constraints, I use high stretch and bend stiffness to preserve the overall form. I also have high compression stiffness to retain more fine detail from the wrinkles and folds. I found that if the mesh is able to contract too much, it appears more rubbery instead of cloth-like. When the besh is forced to bend instead of compress, it produces the nice fold detail we'd expect to see.
 
 
-div class="row">
+<div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/top2.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
-div class="row">
+<div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/top3.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
@@ -53,7 +53,7 @@ It was also good idea to clean up attributes, with the exception of color and `v
 ## Frills
 To create frills, I create constraints between curved panels and the sleeves of the top.
 
-div class="row">
+<div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/frills1.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
