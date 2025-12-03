@@ -2,7 +2,7 @@
 layout: page
 title: Vellum Dress
 description: Dress made and simulated in Houdini using Vellum tools.
-img: assets/img/braids_cover.gif
+img: assets/img/dress_cover.gif
 importance: 1
 category: work
 related_publications: false
