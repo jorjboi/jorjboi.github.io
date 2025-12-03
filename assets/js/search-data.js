@@ -473,6 +473,11 @@ ninja.data = [{
           description: "3D physically-based snowflake simulation at the mesoscopic scale, implemented in Houdini using VEX.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/snowfakes/";
+            },},{id: "projects-vellum-dress",
+          title: 'Vellum Dress',
+          description: "Dress made and simulated in Houdini using Vellum tools.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/vellum_dress/";
             },},{id: "projects-creature-grooming",
           title: 'Creature Grooming',
           description: "Fur groom setup for a werewolf model.",
