@@ -93,4 +93,4 @@ And here is the final dress!
     </div>
 </div>
 
-When I take the final drape in a Vellum solver for simulation, the most important parts is to attach the neckline and sleeves to the body of the model so that they stay in place.
+When I take the final drape in a Vellum solver for simulation, the most important parts are to attach the neckline and sleeves to the body of the model so that they stay in place.
