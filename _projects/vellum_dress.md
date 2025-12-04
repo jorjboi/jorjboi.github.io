@@ -59,31 +59,35 @@ To create frills, I create constraints between curved panels and the sleeves of 
     </div>
 </div>
 
-One issue is that the size of the primitives on the edge of the frill geometry are much larger than the primitives along the border of the sleeve. Trying to constrain them results in jagged edges and primitives.
 
+One issue is that the size of the primitives on the edge of the frill geometry are much larger than the primitives along the border of the sleeve. Trying to constrain them results in jagged edges and primitives.
+<div class="row">
   <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/frills2.png" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
+  </div>
 </div>
+
 
 By using a distance constraint and lowering the `rest length scale` for the primitives along the edges of the frill, I'm able to effectively shrink them and create a smoother transition.
 
-
+<div class="row">
   <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/frills3.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+
 
 ## Dress
 I use two layers of fabric to create a top and bottom layer. The bottom layer has some more stiffness so it won't distort as much, while the top layer is more free-flowing.
 
 To prevent the cloth from intersecting with the hips of the model itself from the initial pose, I found that I could use "Inflate Collisions" to start the collision geometry smaller and inflate it over time.
 
-
+<div class="row">
   <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/dress1.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+
 
 
 And here is the final dress!
@@ -91,6 +95,6 @@ And here is the final dress!
 <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/vellum_dress/dress2.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
-</div>
+
 
 When I take the final drape in a Vellum solver for simulation, the most important parts are to attach the neckline and sleeves to the body of the model so that they stay in place.

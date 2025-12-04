@@ -144,4 +144,5 @@ Now that I've gotten these results, I'm excited to see what else can be achieved
 
 ## Resources 
 [Denis Zen's Grooming Tutorial](https://www.deniszen.com/groomingtut)
+
 [Andriy Bilichenko Grooming Demo](https://www.youtube.com/watch?v=4Ayo3SR3Iow) 
