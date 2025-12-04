@@ -33,7 +33,7 @@ I create my guides for Vellum simulation using a `Guide Groom` node to plant and
     Hair guides 
 </div>
 
-To allow for variation and more realistic motion, I assigned different Vellum constraints based on the hair layer. Some of the guides taken from the top of the head (to be used for slightly more "frizzy" hairs later on) have a moderate amount of stretch and bend stiffness.
+To allow for variation and more realistic motion, I assigned different Vellum constraints based on the hair layer. Some of the guides taken from the top of the head (to be used for slightly more "frizzy" hairs later on) have a moderate amount of stretch and bend stiffness. The stretch stiffness is still kept high in any case, because we should not expect human hair to stretch in most cases.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
